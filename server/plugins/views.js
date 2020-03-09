@@ -36,8 +36,8 @@ module.exports = {
     context: {
       appVersion: pkg.version,
       assetPath: '/assets',
-      serviceName: 'Service name',
-      pageTitle: 'Service name - GOV.UK',
+      serviceName: 'Waste Export Controls Tool',
+      pageTitle: 'Waste Export Controls Tool - GOV.UK',
       analyticsAccount: analyticsAccount
     }
   }

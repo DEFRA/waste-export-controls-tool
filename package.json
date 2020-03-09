@@ -1,7 +1,7 @@
 {
-  "name": "hapi-web-boilerplate",
+  "name": "waste-export-controls-tool",
   "version": "0.0.1",
-  "description": "",
+  "description": "This tool helps you to identify the appropriate classification for waste which is intended for export and the regulatory controls which apply to exports of those wastes to certain countries.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
