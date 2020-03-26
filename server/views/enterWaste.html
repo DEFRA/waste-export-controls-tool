@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-body">
+    <h1 class="govuk-heading-xl">Search for the waste you want to export</h1>
+
+    <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
+
+    <p>Type in the name of the waste you wish to export below.</p>
+    <label for="autocomplete-default">For example Copper scrap</label>
+    <div id="tt-default" class="autocomplete-wrapper"></div>
+
+    <br>
+
+    {{ govukButton({
+      text: "Search"
+    }) }}
+      
+  </div>
+
+  {# Just checking the array is getting passed to the view #}
+  {{wasteName}}
+
+
+
+  <script type="text/javascript" src="assets/accessible-autocomplete.min.js"></script>
+
+
+  <script type="text/javascript">
+    var element = document.querySelector('#tt-default')
+    var id = 'autocomplete-default'
+    accessibleAutocomplete({
+      element: element,
+      id: id,
+      source: wasteName
+    })
+  </script>
+  
+{% endblock %}
