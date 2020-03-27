@@ -21,17 +21,15 @@
       
   </div>
 
-  {# Just checking the array is getting passed to the view #}
-  {{wasteName}}
-
-
 
   <script type="text/javascript" src="assets/accessible-autocomplete.min.js"></script>
 
+  <script> </script>
 
   <script type="text/javascript">
     var element = document.querySelector('#tt-default')
     var id = 'autocomplete-default'
+    var wasteName = {{ wasteName | dump | safe }}
     accessibleAutocomplete({
       element: element,
       id: id,
