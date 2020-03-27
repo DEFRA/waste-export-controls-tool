@@ -27,9 +27,9 @@
   <script> </script>
 
   <script type="text/javascript">
-    var element = document.querySelector('#tt-default')
-    var id = 'autocomplete-default'
-    var wasteName = {{ wasteName | dump | safe }}
+    let element = document.querySelector('#tt-default')
+    let id = 'autocomplete-default'
+    let wasteName = {{ wasteName | dump | safe }}
     accessibleAutocomplete({
       element: element,
       id: id,
