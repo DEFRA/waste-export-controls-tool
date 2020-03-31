@@ -19,8 +19,7 @@ module.exports = [{
         'server/public/static',
         'server/public/build',
         'node_modules/govuk-frontend/govuk/assets',
-        'node_modules/accessible-autocomplete/dist',
-        'data'
+        'node_modules/accessible-autocomplete/dist'
       ]
     }
   }
