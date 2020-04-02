@@ -1,8 +1,11 @@
 #!/bin/bash
-if [ !-data ]; then
+if [ -d "./data" ]; then
+echo "Dir all ready exits"
+else
 mkdir data
 echo "[]" > data/col_data.json
 echo "[]" > data/data.json
-fi
+
+fi 
 
 npm run build:css
