@@ -1,7 +1,8 @@
 #!/bin/bash
-
+if [ !-data ]; then
 mkdir data
 echo "[]" > data/col_data.json
 echo "[]" > data/data.json
+fi
 
 npm run build:css
