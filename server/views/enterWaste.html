@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 
-{% from "input/macro.njk" import govukInput %}
 {% from "button/macro.njk" import govukButton %}
 {% from "back-link/macro.njk" import govukBackLink %}
+{% from "input/macro.njk" import govukInput %}
 
 {% block beforeContent %}
   {{ govukPhaseBanner({
@@ -24,12 +24,29 @@
 
     <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
 
-    <span class="govuk-body">Type in the name of the waste you wish to export below.</span>
-    <label for="autocomplete-default" class="govuk-caption-m">For example Copper scrap</label>
-    <br>
+    {# JavaScript version of textbox with autocomplete #}
+    <div id="hideThisFromNonJs" style="display:none">
+      <span class="govuk-body">Type in the name of the waste you wish to export below.</span>
+      <label for="selectedWasteName" class="govuk-caption-m">For example Copper scrap</label>
+      <br>
 
-    <div id="tt-default" class="autocomplete-wrapper"></div>
-    <br>
+      <div id="tt-default" class="autocomplete-wrapper"></div>
+      <br>
+    </div>
+
+    {# Non JavaScript version of textbox #}
+    <noscript>
+      {{ govukInput({
+        label: {
+          text: "Type in the name of the waste you wish to export below."
+        },
+        hint: {
+          text: "For example Copper scrap"
+        },
+        id: "selectedWasteName",
+        name: "selectedWasteName"
+      }) }}
+    </noscript>
 
     {{ govukButton({
       text: "Continue"
@@ -44,11 +61,13 @@
 
   <script type="text/javascript" src="assets/accessible-autocomplete.min.js"></script>
 
-  <script> </script>
+  <script type="text/javascript">
+    document.getElementById('hideThisFromNonJs').style.display='block';
+  </script>
 
   <script type="text/javascript">
     let element = document.querySelector('#tt-default')
-    let id = 'autocomplete-default'
+    let id = 'selectedWasteName'
     let wasteName = {{ wasteName | dump | safe }}
     accessibleAutocomplete({
       element: element,
