@@ -2,7 +2,8 @@ const routes = [].concat(
   require('../routes/home'),
   require('../routes/about'),
   require('../routes/public'),
-  require('../routes/enterWaste')
+  require('../routes/enterWaste'),
+  require('../routes/multiWasteResults')
 )
 
 module.exports = {

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block content %}
+  <div class="govuk-body">
+    {{ govukRadios({
+      idPrefix: "select-waste-result",
+      name: "select-waste-result",
+      fieldset: {
+        legend: {
+          text: titleText,
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      hint: {
+        text: hintText
+      },
+      items: itemData
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    <br>
+    {{ govukBackLink({
+      text: "Back",
+      href: "/enterWaste"
+    }) }}
+  </div>
+{% endblock %}
