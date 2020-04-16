@@ -10,13 +10,15 @@
 
     <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
 
+    <form method="post" autocomplete="off">
+
     {# JavaScript version of textbox with autocomplete #}
     <div id="hideThisFromNonJs" style="display:none">
       <span class="govuk-body">Type in the name of the waste you wish to export below.</span>
-      <label for="selectedWasteName" class="govuk-caption-m">For example Copper scrap</label>
+      <label for="wasteName" class="govuk-caption-m">For example Copper scrap</label>
       <br>
 
-      <div id="tt-default" class="autocomplete-wrapper"></div>
+      <div id="selectedWasteName" class="autocomplete-wrapper"></div>
       <br>
     </div>
 
@@ -42,6 +44,8 @@
       text: "Back",
       href: "/"
     }) }}
+
+    </form>
   </div>
 
 
@@ -52,8 +56,8 @@
   </script>
 
   <script type="text/javascript">
-    let element = document.querySelector('#tt-default')
-    let id = 'selectedWasteName'
+    let element = document.querySelector('#selectedWasteName')
+    let id = 'wasteName'
     let wasteName = {{ wasteName | dump | safe }}
     accessibleAutocomplete({
       element: element,
