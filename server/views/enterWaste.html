@@ -56,13 +56,10 @@
   </script>
 
   <script type="text/javascript">
-    let element = document.querySelector('#selectedWasteName')
-    let id = 'wasteName'
-    let wasteName = {{ wasteName | dump | safe }}
     accessibleAutocomplete({
-      element: element,
-      id: id,
-      source: wasteName,
+      element: document.querySelector('#selectedWasteName'),
+      id: 'wasteName',
+      source: {{ wasteName | dump | safe }},
       name: 'selectedWasteName'
     })
   </script>

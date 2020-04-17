@@ -10,7 +10,6 @@ data.forEach(element => {
 module.exports = [{
   method: 'GET',
   path: '/enterWaste',
-
   handler: (request, h) => {
     return h.view('enterWaste', {
       wasteName: wasteName
