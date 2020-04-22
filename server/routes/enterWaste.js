@@ -1,18 +1,17 @@
 const joi = require('@hapi/joi')
 const data = require('../../data/data.json')
 
-// Extract just the wasteName from the main data file
-const wasteName = []
-data.forEach(element => {
-  wasteName.push(element.fields.wasteName)
-})
-
-
 
 module.exports = [{
   method: 'GET',
   path: '/enterWaste',
   handler: (request, h) => {
+    // Extract just the wasteName from the main data file
+    const wasteName = []
+    data.forEach(element => {
+      wasteName.push(element.fields.wasteName)
+    })
+
     return h.view('enterWaste', {
       wasteName: wasteName
     })
@@ -26,13 +25,17 @@ module.exports = [{
 
     const searchResults =[]
     data.forEach(element => {
+      // Perform a search to see if the selectedWasteName exists within the wasteName string
       if (element.fields.wasteName.toUpperCase().includes(payload.selectedWasteName.toUpperCase())) {
+        // For every positive result add it to the searchResults
         searchResults.push({
           value: element.fields.wasteName,
           text: element.fields.wasteName
         })
       }
     })
+
+    console.log(searchResults.length)
 
     return h.view('multiWasteResults', {
       titleText: 'Select a Waste Type',
