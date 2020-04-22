@@ -1,24 +1,28 @@
 {% extends 'layout.html' %}
 
 {% from "button/macro.njk" import govukButton %}
+ {% from "panel/macro.njk" import govukPanel %}
 
 {% block content %}
   <div class="govuk-body">
-    <h1 class="govuk-heading-xl">Waste Export Control Tool</h1>
+    {# <h1 class="govuk-heading-xl"></h1>
 
-    <p class="govuk-body">{{titleText}}</p>
+    <p class="govuk-body">{{titleText}}</p>     #}
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>{{listItem1}}</li>
-      <li>{{listItem2}}</li>
-    </ul>
+{{ govukPanel({
+  titleText: "Export not allowed",
+  html: "You cannot export that type of waste<br>to the country selected"
+}) }}
+<br>
+ <span class="govuk-body"><strong>What happens next</strong><br> 
+ For more info and advice call 0800 000 000
+ </span>    
 
-    {{ govukButton({
-        text: "Start now",
-        href: "enterWaste",
-        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
-        isStartButton: true
-      }) }}
-      
+ <br>
+ <br>
+{{ govukButton({
+      text: "Start a new check"
+    }) }}
+<br>  
   </div>
 {% endblock %}
