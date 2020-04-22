@@ -3,7 +3,8 @@ const routes = [].concat(
   require('../routes/about'),
   require('../routes/public'),
   require('../routes/enterWaste'),
-  require('../routes/multiWasteResults')
+  require('../routes/multiWasteResults'),
+  require('../routes/finalResult')
 )
 
 module.exports = {
