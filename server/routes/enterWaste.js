@@ -1,29 +1,23 @@
-const joi = require('@hapi/joi')
 const data = require('../../data/data.json')
 
+// Extract just the wasteName from the main data file
+const wasteName = []
+data.forEach(element => {
+  wasteName.push(element.fields.wasteName)
+})
 
-module.exports = [{
-  method: 'GET',
-  path: '/enterWaste',
-  handler: (request, h) => {
-    // Extract just the wasteName from the main data file
-    const wasteName = []
-    data.forEach(element => {
-      wasteName.push(element.fields.wasteName)
-    })
-
+const handlers = {
+  get: (request, h) => {
+    // Respond with the view
     return h.view('enterWaste', {
       wasteName: wasteName
     })
-  }
-}, {
-  method: 'POST',
-  path: '/enterWaste',
-  handler: (request, h) => {
+  },
+  post: async (request, h) => {
     const payload = request.payload
     console.log(payload)
 
-    const searchResults =[]
+    const searchResults = []
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
       if (element.fields.wasteName.toUpperCase().includes(payload.selectedWasteName.toUpperCase())) {
@@ -34,20 +28,33 @@ module.exports = [{
         })
       }
     })
+ 
+    console.log(`Outside of if ${searchResults.length}`)
 
-    console.log(searchResults.length)
+    if (searchResults.length = 0) {
+      console.log(`Should be 0: ${searchResults.length}`)
+    } else if (searchResults.length = 1) {
+      console.log(`Should be 1: ${searchResults.length}`)
+    } else if (searchResults.length > 1) {
+      console.log(`Should be more than 1: ${searchResults.length}`)
+    }
 
-    return h.view('multiWasteResults', {
+    return searchResults
+    
+     return h.view('multiWasteResults', {
       titleText: 'Select a Waste Type',
       hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
       itemData: searchResults
     })
-  }/* ,
-  options: {
-    validate: {
-      payload: joi.object().keys({
-        email: joi.string().email().required()
-      })
-    }
-  } */
+  }
+}
+
+module.exports = [{
+  method: 'GET',
+  path: '/enterWaste',
+  handler: handlers.get
+}, {
+  method: 'POST',
+  path: '/enterWaste',
+  handler: handlers.post
 }]
