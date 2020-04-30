@@ -13,11 +13,10 @@ const handlers = {
       wasteName: wasteName
     })
   },
-  post: async (request, h) => {
+  post: (request, h) => {
     const payload = request.payload
-    console.log(payload)
-
     const searchResults = []
+
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
       if (element.fields.wasteName.toUpperCase().includes(payload.selectedWasteName.toUpperCase())) {
@@ -29,23 +28,21 @@ const handlers = {
       }
     })
  
-    console.log(`Outside of if ${searchResults.length}`)
-
-    if (searchResults.length = 0) {
-      console.log(`Should be 0: ${searchResults.length}`)
-    } else if (searchResults.length = 1) {
-      console.log(`Should be 1: ${searchResults.length}`)
-    } else if (searchResults.length > 1) {
-      console.log(`Should be more than 1: ${searchResults.length}`)
-    }
-
-    return searchResults
-    
-     return h.view('multiWasteResults', {
-      titleText: 'Select a Waste Type',
-      hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-      itemData: searchResults
-    })
+    if (searchResults.length == 0) {
+      return h.view('enterWaste', {
+        wasteName: wasteName
+      })
+    } else if (searchResults.length == 1) {
+        return h.redirect('exportTo', {
+          wasteName: wasteName
+        })
+      } else if (searchResults.length > 1) {
+        return h.view('multiWasteResults', {
+          titleText: 'Select a Waste Type',
+          hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
+          itemData: searchResults
+        })
+      }
   }
 }
 
