@@ -18,22 +18,45 @@
       <label for="wasteName" class="govuk-caption-m">For example Copper scrap</label>
       <br>
 
+    {% if errorMessage %}
+      <span id="passport-issued-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+      </span>
+    {% endif %}
+
       <div id="selectedWasteName" class="autocomplete-wrapper"></div>
       <br>
     </div>
 
     {# Non JavaScript version of textbox #}
     <noscript>
-      {{ govukInput({
-        label: {
-          text: "Type in the name of the waste you wish to export below."
-        },
-        hint: {
-          text: "For example Copper scrap"
-        },
-        id: "selectedWasteName",
-        name: "selectedWasteName"
-      }) }}
+      {% if errorMessage %}
+        {{ govukInput({
+          label: {
+            text: "Type in the name of the waste you wish to export below."
+          },
+          hint: {
+            text: "For example Copper scrap"
+          },
+          errorMessage: {
+            text: errorMessage
+          },
+          id: "selectedWasteName",
+          name: "selectedWasteName"
+        }) }}
+      {% else %}
+        {{ govukInput({
+          label: {
+            text: "Type in the name of the waste you wish to export below."
+          },
+          hint: {
+            text: "For example Copper scrap"
+          },
+          id: "selectedWasteName",
+          name: "selectedWasteName"
+        }) }}
+      {% endif %}
+
     </noscript>
 
     {{ govukButton({

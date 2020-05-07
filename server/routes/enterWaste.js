@@ -30,7 +30,8 @@ const handlers = {
  
     if (searchResults.length == 0) {
       return h.view('enterWaste', {
-        wasteName: wasteName
+        wasteName: wasteName,
+        errorMessage: 'Waste not found, please try again.'
       })
     } else if (searchResults.length == 1) {
         return h.redirect('exportTo', {
