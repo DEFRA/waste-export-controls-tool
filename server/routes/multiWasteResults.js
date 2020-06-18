@@ -1,27 +1,5 @@
 const joi = require('@hapi/joi')
 
-const itemData = [
-  {
-    value: 'antimony',
-    text: 'Antimony'
-  },
-  {
-    value: 'arsenic',
-    text: 'Arsenic'
-  },
-  {
-    value: 'lead',
-    text: 'Lead'
-  },
-  {
-    value: 'mercury',
-    text: 'Mercury'
-  },
-  {
-    value: 'selenium',
-    text: 'Selenium'
-  }
-]
 
 module.exports = [{
   method: 'GET',
@@ -41,12 +19,5 @@ module.exports = [{
       title: 'Hello',
       message: 'World'
     })
-  },
-  options: {
-    validate: {
-      payload: joi.object().keys({
-        email: joi.string().email().required()
-      })
-    }
   }
 }]

@@ -6,6 +6,9 @@
 
 {% block content %}
   <div class="govuk-body">
+
+    <form method="post" autocomplete="off">
+
     {{ govukRadios({
       idPrefix: "select-waste-result",
       name: "select-waste-result",
@@ -30,5 +33,8 @@
       text: "Back",
       href: "/enterWaste"
     }) }}
+
+    </form>
+    
   </div>
 {% endblock %}

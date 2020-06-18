@@ -38,7 +38,7 @@ const handlers = {
           wasteName: wasteName
         })
       } else if (searchResults.length > 1) {
-        return h.view('multiWasteResults', {
+        return h.redirect('multiWasteResults', {
           titleText: 'Select a Waste Type',
           hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
           itemData: searchResults
