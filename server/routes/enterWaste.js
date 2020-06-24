@@ -27,22 +27,19 @@ const handlers = {
         })
       }
     })
- 
+
+
     if (searchResults.length == 0) {
       return h.view('enterWaste', {
         wasteName: wasteName,
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (searchResults.length == 1) {
-        return h.redirect('exportTo', {
-          wasteName: wasteName
-        })
+        request.yar.set('formData', { wasteName: searchResults })
+        return h.redirect('exportTo')
       } else if (searchResults.length > 1) {
-        return h.redirect('multiWasteResults', {
-          titleText: 'Select a Waste Type',
-          hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-          itemData: searchResults
-        })
+          request.yar.set('formData', { searchResults: searchResults })
+          return h.redirect('multiWasteResults')
       }
   }
 }
