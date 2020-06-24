@@ -9,21 +9,42 @@
 
     <form method="post" autocomplete="off">
 
-    {{ govukRadios({
-      idPrefix: "selectWasteResult",
-      name: "selectWasteResult",
-      fieldset: {
-        legend: {
-          text: titleText,
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--xl"
+    {% if errorMessage %}
+      {{ govukRadios({
+        idPrefix: "selectWasteResult",
+        name: "selectWasteResult",
+        fieldset: {
+          legend: {
+            text: titleText,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          text: hintText
+        },
+        items: itemData,
+        errorMessage: {
+          text: errorMessage
         }
-      },
-      hint: {
-        text: hintText
-      },
-      items: itemData
-    }) }}
+      }) }}
+    {% else %}
+      {{ govukRadios({
+        idPrefix: "selectWasteResult",
+        name: "selectWasteResult",
+        fieldset: {
+          legend: {
+            text: titleText,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          text: hintText
+        },
+        items: itemData
+      }) }}
+    {% endif %}
 
     {{ govukButton({
       text: "Continue"
