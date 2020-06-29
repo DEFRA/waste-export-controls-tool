@@ -28,19 +28,18 @@ const handlers = {
       }
     })
 
-
-    if (searchResults.length == 0) {
+    if (searchResults.length === 0) {
       return h.view('enterWaste', {
         wasteName: wasteName,
         errorMessage: 'Waste not found, please try again.'
       })
-    } else if (searchResults.length == 1) {
-        request.yar.set('formData', { wasteName: searchResults })
-        return h.redirect('exportTo')
-      } else if (searchResults.length > 1) {
-          request.yar.set('formData', { searchResults: searchResults })
-          return h.redirect('multiWasteResults')
-      }
+    } else if (searchResults.length === 1) {
+      request.yar.set('formData', { wasteName: searchResults })
+      return h.redirect('exportTo')
+    } else if (searchResults.length > 1) {
+      request.yar.set('formData', { searchResults: searchResults })
+      return h.redirect('multiWasteResults')
+    }
   }
 }
 
