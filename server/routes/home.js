@@ -4,11 +4,7 @@ module.exports = [{
   method: 'GET',
   path: '/',
   handler: (request, h) => {
-    return h.view('home', {
-      titleText: 'Use this service to:',
-      listItem1: 'check what types of waste can be exported to which countries',
-      listItem2: 'what conditions apply to these exports'
-    })
+    return h.view('home')
   }
 }, {
   method: 'POST',

@@ -10,7 +10,10 @@ const handlers = {
   get: (request, h) => {
     // Respond with the view
     return h.view('enterWaste', {
-      wasteName: wasteName
+      wasteName: wasteName,
+      textLine1: 'Search for your waste by the waste code or a key word',
+      textLine2: 'For example, type in:  A1010 or plastic',
+      textLine3: 'Select your waste from the drop down list, or click “Continue” to see a full list of matches.'
     })
   },
   post: (request, h) => {
@@ -31,6 +34,9 @@ const handlers = {
     if (searchResults.length === 0) {
       return h.view('enterWaste', {
         wasteName: wasteName,
+        textLine1: 'Search for your waste by the waste code or a key word',
+        textLine2: 'For example, type in:  A1010 or plastic',
+        textLine3: 'Select your waste from the drop down list, or click “Continue” to see a full list of matches.',
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (searchResults.length === 1) {

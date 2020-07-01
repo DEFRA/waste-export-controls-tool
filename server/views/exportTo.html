@@ -6,7 +6,7 @@
 
 {% block content %}
   <div class="govuk-body">
-    <h1 class="govuk-heading-xl">Where are you exporting to?</h1>
+    <h1 class="govuk-heading-xl">Which country do you want to export to?</h1>
 
     <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
 
@@ -14,7 +14,8 @@
 
     {# JavaScript version of textbox with autocomplete #}
     <div id="hideThisFromNonJs" style="display:none">
-      <label for="selectCountry" class="govuk-body">Select Country</label>
+      <span class="govuk-body">{{ labelText }}</span>
+      <label for="selectCountry" class="govuk-caption-m">{{ hintText }}</label>
       <br>
 
       <div id="selectedCountry" class="autocomplete-wrapper"></div>
@@ -25,7 +26,10 @@
     <noscript>
       {{ govukInput({
         label: {
-          text: "Select Country"
+          text: labelText
+        },
+        hint: {
+          text: hintText
         },
         id: "selectedCountry",
         name: "selectedCountry"

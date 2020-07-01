@@ -10,7 +10,9 @@ const handlers = {
   get: (request, h) => {
     // Respond with the view
     return h.view('exportTo', {
-      countryName: countryName
+      countryName: countryName,
+      labelText: 'Search for your intended destination country',
+      hintText: 'For example, type in: Belguim'
     })
   },
   post: (request, h) => {
