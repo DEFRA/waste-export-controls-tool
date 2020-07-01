@@ -17,7 +17,33 @@ const handlers = {
   },
   post: (request, h) => {
     const payload = request.payload
-    return payload
+    const countrySearchResults = []
+
+    colData.forEach(element => {
+      // Perform a search to see if the selectedCountry exists within the displayName string
+      if (element.displayName.toUpperCase().includes(payload.selectedCountry.toUpperCase())) {
+        // For every positive result add it to the countrySearchResults
+        countrySearchResults.push({
+          value: element.displayName,
+          text: element.displayName
+        })
+      }
+    })
+
+    if (countrySearchResults.length === 0) {
+      return h.view('exportTo', {
+        countryName: countryName,
+        labelText: 'Search for your intended destination country',
+        hintText: 'For example, type in: Belguim',
+        errorMessage: 'Country not found, please try again.'
+      })
+    } else if (countrySearchResults.length === 1) {
+        request.yar.set('formData', { countryName: countrySearchResults.value })
+        return h.redirect('confirm')
+    } else if (countrySearchResults.length > 1) {
+        request.yar.set('formData', { countrySearchResults: countrySearchResults })
+        return h.redirect('multiCountryResults')
+    }
   }
 }
 
