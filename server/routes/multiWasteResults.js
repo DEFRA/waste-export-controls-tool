@@ -7,7 +7,7 @@ const handlers = {
     return h.view('multiWasteResults', {
       titleText: 'Select a Waste Type',
       hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-      itemData: formData.searchResults
+      itemData: formData.wasteSearchResults
     })
   },
   post: (request, h) => {
@@ -22,7 +22,7 @@ const handlers = {
       return h.view('multiWasteResults', {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-        itemData: formData.searchResults,
+        itemData: formData.wasteSearchResults,
         errorMessage: 'Please select a waste type from the list or use the Back link to search again'
       })
     }
