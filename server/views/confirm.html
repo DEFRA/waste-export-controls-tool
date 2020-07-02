@@ -14,14 +14,14 @@
         text: "Waste code"
       },
       value: {
-        text: "A1160"
+        text: wasteCode
       },
       actions: {
         items: [
           {
             href: "/enterWaste",
             text: "Change",
-            visuallyHiddenText: "name"
+            visuallyHiddenText: "Change the waste code"
           }
         ]
       }
@@ -31,14 +31,14 @@
         text: "Waste name"
       },
       value: {
-        text: "Batteries"
+        text: wasteName
       },
       actions: {
         items: [
           {
             href:  "/enterWaste",
             text: "Change",
-            visuallyHiddenText: "date of birth"
+            visuallyHiddenText: "Change the name of the waste"
           }
         ]
       }
@@ -48,14 +48,14 @@
         text: "Destination country"
       },
       value: {
-        html: "Brazil"
+        text: countryName
       },
       actions: {
         items: [
           {
             href: " /exportTo",
             text: "Change",
-            visuallyHiddenText: "contact information"
+            visuallyHiddenText: "Change the destination country"
           }
         ]
       }
@@ -66,7 +66,7 @@
 
 
   {{ govukButton({
-      text: "Continue"
+      text: "Confirm and continue"
     }) }}  
        
   </div>

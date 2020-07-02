@@ -38,10 +38,10 @@ const handlers = {
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {
-        request.yar.set('formData', { countryName: countrySearchResults.value })
+        request.yar.set('countryData', { countryName: countrySearchResults[0].value })
         return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
-        request.yar.set('formData', { countrySearchResults: countrySearchResults })
+        request.yar.set('countryData', { countrySearchResults: countrySearchResults })
         return h.redirect('multiCountryResults')
     }
   }

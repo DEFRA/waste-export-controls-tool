@@ -19,6 +19,7 @@ const handlers = {
   post: (request, h) => {
     const payload = request.payload
     const wasteSearchResults = []
+    const wasteDetails = []
 
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
@@ -27,6 +28,10 @@ const handlers = {
         wasteSearchResults.push({
           value: element.fields.wasteName,
           text: element.fields.wasteName
+        })
+        wasteDetails.push({
+          wasteCode: element.fields.Title,
+          wasteName1: element.fields.Name1
         })
       }
     })
@@ -40,10 +45,16 @@ const handlers = {
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (wasteSearchResults.length === 1) {
-        request.yar.set('formData', { wasteName: wasteSearchResults.value })
+      console.log(wasteDetails)
+      console.log(wasteSearchResults)
+        request.yar.set('searchData', {
+          wasteName: wasteSearchResults[0].value,
+          wasteCode: wasteDetails[0].wasteCode,
+          wasteName1: wasteDetails[0].wasteName1
+        })
         return h.redirect('exportTo')
     } else if (wasteSearchResults.length > 1) {
-        request.yar.set('formData', { wasteSearchResults: wasteSearchResults })
+        request.yar.set('searchData', { wasteSearchResults: wasteSearchResults })
       return h.redirect('multiWasteResults')
     }
   }
