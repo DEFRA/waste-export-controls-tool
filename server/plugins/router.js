@@ -6,6 +6,7 @@ const routes = [].concat(
   require('../routes/multiWasteResults'),
   require('../routes/exportTo'),
   require('../routes/multiCountryResults'),
+  require('../routes/confirm'),
   require('../routes/finalResult')
 )
 
