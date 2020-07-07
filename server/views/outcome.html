@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+ {% from "panel/macro.njk" import govukPanel %}
+
+{% block content %}
+  <div class="govuk-body">
+
+    {{ govukPanel({
+      titleText: "Export is controlled",
+      html: "The export of A1010 Metal wastes and waste consisting of alloys to Belgium is controlled"
+    }) }}
+    <br>
+    <span class="govuk-body"><strong>What happens next</strong><br> 
+    For more info and advice call 0800 000 000
+    </span>    
+
+    <br>
+    <br>
+    {{ govukButton({
+          text: "Start a new check"
+        }) }}
+  </div>
+{% endblock %}

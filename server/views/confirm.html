@@ -7,67 +7,67 @@
   <div class="govuk-body">
     <h1 class="govuk-heading-xl">Confim waste and county details</h1>
 
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Waste code"
-      },
-      value: {
-        text: wasteCode
-      },
-      actions: {
-        items: [
-          {
-            href: "/enterWaste",
-            text: "Change",
-            visuallyHiddenText: "Change the waste code"
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Waste code"
+          },
+          value: {
+            text: wasteCode
+          },
+          actions: {
+            items: [
+              {
+                href: "/enterWaste",
+                text: "Change",
+                visuallyHiddenText: "Change the waste code"
+              }
+            ]
           }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Waste name"
-      },
-      value: {
-        text: wasteName
-      },
-      actions: {
-        items: [
-          {
-            href:  "/enterWaste",
-            text: "Change",
-            visuallyHiddenText: "Change the name of the waste"
+        },
+        {
+          key: {
+            text: "Waste name"
+          },
+          value: {
+            text: wasteName
+          },
+          actions: {
+            items: [
+              {
+                href:  "/enterWaste",
+                text: "Change",
+                visuallyHiddenText: "Change the name of the waste"
+              }
+            ]
           }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Destination country"
-      },
-      value: {
-        text: countryName
-      },
-      actions: {
-        items: [
-          {
-            href: " /exportTo",
-            text: "Change",
-            visuallyHiddenText: "Change the destination country"
+        },
+        {
+          key: {
+            text: "Destination country"
+          },
+          value: {
+            text: countryName
+          },
+          actions: {
+            items: [
+              {
+                href: " /exportTo",
+                text: "Change",
+                visuallyHiddenText: "Change the destination country"
+              }
+            ]
           }
-        ]
-      }
-    }   
-  ]
-}) }}  
-
-
-
-  {{ govukButton({
-      text: "Confirm and continue"
+        }   
+      ]
     }) }}  
+
+    <form method="post">
+      {{ govukButton({
+          text: "Confirm and continue"
+        }) }}
+    </form>
        
   </div>
 {% endblock %}

@@ -12,8 +12,7 @@ const handlers = {
       })
     },
   post: (request, h) => {
-      return h.view('confirm', {
-      })
+      return h.redirect('outcome')
     }
   }
   
