@@ -45,8 +45,6 @@ const handlers = {
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (wasteSearchResults.length === 1) {
-      console.log(wasteDetails)
-      console.log(wasteSearchResults)
         request.yar.set('searchData', {
           wasteName: wasteSearchResults[0].value,
           wasteCode: wasteDetails[0].wasteCode,

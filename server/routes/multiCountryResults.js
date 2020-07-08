@@ -1,4 +1,6 @@
 // const joi = require('@hapi/joi')
+const colData = require('../../data/col_data.json')
+
 
 const handlers = {
   get: (request, h) => {
@@ -14,10 +16,18 @@ const handlers = {
     const payload = request.payload
 
     if (payload.selectCountryResult) {
-      request.yar.set('countryData', { countryName: payload.selectCountryResult })
+      colData.forEach(element => {
+        // Perform a search to find the selected country within the column data so we can find the user friendly name
+        if (element.name.toUpperCase().includes(payload.selectCountryResult.toUpperCase())) {
+          // For every positive save the columns display name
+          request.yar.set('countryData', {
+            countryName: payload.selectCountryResult,
+            countryDisplayName: element.displayName
+          })
+        }
+      })
       return h.redirect('confirm')
     } else {
-      const countryData = request.yar.get('countryData')
 
       return h.view('multiCountryResults', {
         titleText: 'Select a country',

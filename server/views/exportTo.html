@@ -18,22 +18,44 @@
       <label for="selectCountry" class="govuk-caption-m">{{ hintText }}</label>
       <br>
 
+      {% if errorMessage %}
+        <span id="passport-issued-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+      </span>
+      {% endif %}
+
       <div id="selectedCountry" class="autocomplete-wrapper"></div>
       <br>
     </div>
 
     {# Non JavaScript version of textbox #}
     <noscript>
-      {{ govukInput({
-        label: {
-          text: labelText
-        },
-        hint: {
-          text: hintText
-        },
-        id: "selectedCountry",
-        name: "selectedCountry"
-      }) }}
+      {% if errorMessage %}
+        {{ govukInput({
+          label: {
+            text: labelText
+          },
+          hint: {
+            text: hintText
+          },
+          errorMessage: {
+            text: errorMessage
+          },
+          id: "selectedCountry",
+          name: "selectedCountry"
+        }) }}
+      {% else %}
+        {{ govukInput({
+          label: {
+            text: labelText
+          },
+          hint: {
+            text: hintText
+          },
+          id: "selectedCountry",
+          name: "selectedCountry"
+        }) }}
+      {% endif %}
     </noscript>
 
     {{ govukButton({
@@ -59,7 +81,7 @@
     accessibleAutocomplete({
       element: document.querySelector('#selectedCountry'),
       id: 'selectCountry',
-      source: {{ countryName | dump | safe }},
+      source: {{ countryDisplayName | dump | safe }},
       name: 'selectedCountry'
     })
   </script>

@@ -1,16 +1,16 @@
 const colData = require('../../data/col_data.json')
 
 // Extract just the wasteName from the main data file
-const countryName = []
+const countryDisplayName = []
 colData.forEach(element => {
-  countryName.push(element.displayName)
+  countryDisplayName.push(element.displayName)
 })
 
 const handlers = {
   get: (request, h) => {
     // Respond with the view
     return h.view('exportTo', {
-      countryName: countryName,
+      countryDisplayName: countryDisplayName,
       labelText: 'Search for your intended destination country',
       hintText: 'For example, type in: Belguim'
     })
@@ -24,7 +24,7 @@ const handlers = {
       if (element.displayName.toUpperCase().includes(payload.selectedCountry.toUpperCase())) {
         // For every positive result add it to the countrySearchResults
         countrySearchResults.push({
-          value: element.displayName,
+          value: element.name,
           text: element.displayName
         })
       }
@@ -32,13 +32,16 @@ const handlers = {
 
     if (countrySearchResults.length === 0) {
       return h.view('exportTo', {
-        countryName: countryName,
+        countryDisplayName: countryDisplayName,
         labelText: 'Search for your intended destination country',
         hintText: 'For example, type in: Belguim',
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {
-        request.yar.set('countryData', { countryName: countrySearchResults[0].value })
+        request.yar.set('countryData', {
+          countryName: countrySearchResults[0].value,
+          countryDisplayName: countrySearchResults[0].text
+        })
         return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
         request.yar.set('countryData', { countrySearchResults: countrySearchResults })

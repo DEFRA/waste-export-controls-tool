@@ -8,7 +8,7 @@ const handlers = {
     return h.view('confirm', {
       wasteCode: searchData.wasteCode,
       wasteName: searchData.wasteName1,
-      countryName: countryData.countryName
+      countryDisplayName: countryData.countryDisplayName
       })
     },
   post: (request, h) => {
