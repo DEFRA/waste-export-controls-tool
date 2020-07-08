@@ -1,4 +1,6 @@
-const joi = require('@hapi/joi')
+//const joi = require('@hapi/joi')
+const data = require('../../data/data.json')
+
 
 const handlers = {
   get: (request, h) => {
@@ -12,7 +14,19 @@ const handlers = {
       })
     },
   post: (request, h) => {
-      return h.redirect('outcome')
+    const wasteSearchData = request.yar.get('searchData')
+    const countryData = request.yar.get('countryData')
+
+    data.forEach(element => {
+      // Perform a search to see if the selectedWasteName exists within the wasteName string
+      if (element.fields.wasteName.toUpperCase().includes(wasteSearchData.wasteName.toUpperCase())) {
+        // For every positive result add it to the wasteSearchResults
+        const outcome = element.fields[countryData.countryName]
+        console.log(outcome)
+      }
+    })
+
+    return h.redirect('outcome')
     }
   }
   
