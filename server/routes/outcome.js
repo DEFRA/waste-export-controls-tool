@@ -1,29 +1,34 @@
 const joi = require('@hapi/joi')
 
-module.exports = [{
-  method: 'GET',
-  path: '/outcome',
-  handler: (request, h) => {
+const handlers = {
+  get: (request, h) => {
+    const wasteData = request.yar.get('wasteData')
+    const countryData = request.yar.get('countryData')
+    const outcome = request.yar.get('outcome')
+
+    console.log(outcome.outcomeInt)
+
     return h.view('outcome', {
-      titleText: 'Use this service to:',
-      listItem1: 'check what types of waste can be exported to which countries',
-      listItem2: 'what conditions apply to these exports'
+      panelColor: '#00703c',
+      panelTitle: 'Export is controlled',
+      panelText: `The export of ${wasteData.wasteCode} - ${wasteData.wasteName1} to ${countryData.countryDisplayName} is controlled`
     })
-  }
-}, {
-  method: 'POST',
-  path: '/outcome',
-  handler: (request, h) => {
+  },
+  post: (request, h) => {
     return h.view('outcome', {
       title: 'Hello',
       message: 'World'
     })
-  },
-  options: {
-    validate: {
-      payload: joi.object().keys({
-        email: joi.string().email().required()
-      })
-    }
+   }
   }
+
+
+  module.exports = [{
+  method: 'GET',
+  path: '/outcome',
+  handler: handlers.get
+}, {
+  method: 'POST',
+  path: '/outcome',
+  handler: handlers.post
 }]

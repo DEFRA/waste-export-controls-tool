@@ -5,14 +5,21 @@
 
 {% block content %}
   <div class="govuk-body">
+    <style>
+      .govuk-panel--confirmation {
+        color: #ffffff;
+        background: {{panelColor}};
+      }
+    </style>
+
     {{ govukPanel({
-      titleText: "Export is controlled",
-      html: "The export of A1010 Metal wastes and waste consisting of alloys to Belgium is controlled"
+      titleText: panelTitle,
+      html: panelText
     }) }}
     <br>
     <span class="govuk-body"><strong>What happens next</strong><br> 
     For more info and advice call 0800 000 000
-    </span>    
+    </span>
 
     <br>
     <br>
