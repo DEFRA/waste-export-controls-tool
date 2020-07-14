@@ -5,11 +5,11 @@
 
 {% block content %}
   <div class="govuk-body">
-    {# Override panel style to set the colour #}
+    {# Override panel style to change it's background colour #}
     <style>
       .govuk-panel--confirmation {
         color: #ffffff;
-        background: {{panelColor}};
+        background: {{ panelColor }};
       }
     </style>
 
@@ -17,15 +17,16 @@
       titleText: panelTitle,
       html: panelText
     }) }}
-    <br>
-    <span class="govuk-body"><strong>What happens next</strong><br> 
-    For more info and advice call 0800 000 000
-    </span>
 
-    <br>
-    <br>
+    <h2 class="govuk-heading-m">Further Information</h2>
+
+    <p>For more information and advice on international waste shipments <a href="#" class="govuk-link">read the guidance on import and export procedures</a></p>
+
+    <p><a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)</p>
+
     {{ govukButton({
-          text: "Start a new check"
+          text: "Start again",
+          href: "/"
         }) }}
   </div>
 {% endblock %}

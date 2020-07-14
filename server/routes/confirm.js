@@ -19,7 +19,7 @@ const handlers = {
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
       if (element.fields.wasteName.toUpperCase().includes(wasteData.wasteName.toUpperCase())) {
-        // Add the result to yar
+        // Add the result to yar. Expected values 1-4
         request.yar.set('outcome', {
           outcomeInt: element.fields[countryData.countryName]
         })
