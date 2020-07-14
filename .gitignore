@@ -4,5 +4,3 @@ node_modules
 npm-debug.log
 server/public/build
 lcov.info
-data/col_data.json
-data/data.json

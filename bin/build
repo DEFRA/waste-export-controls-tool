@@ -2,10 +2,10 @@
 if [ -d "./data" ]; then
 echo "Dir all ready exits"
 else
+echo "Data files don't exist, creating dummy data files..."
 mkdir data
 echo "[]" > data/col_data.json
 echo "[]" > data/data.json
-
 fi 
 
 npm run build:css
