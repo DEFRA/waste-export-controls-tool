@@ -45,14 +45,14 @@ const handlers = {
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (wasteSearchResults.length === 1) {
-        request.yar.set('wasteData', {
-          wasteName: wasteSearchResults[0].value,
-          wasteCode: wasteDetails[0].wasteCode,
-          wasteName1: wasteDetails[0].wasteName1
-        })
-        return h.redirect('exportTo')
+      request.yar.set('wasteData', {
+        wasteName: wasteSearchResults[0].value,
+        wasteCode: wasteDetails[0].wasteCode,
+        wasteName1: wasteDetails[0].wasteName1
+      })
+      return h.redirect('exportTo')
     } else if (wasteSearchResults.length > 1) {
-        request.yar.set('wasteData', { wasteSearchResults: wasteSearchResults })
+      request.yar.set('wasteData', { wasteSearchResults: wasteSearchResults })
       return h.redirect('multiWasteResults')
     }
   }

@@ -1,10 +1,11 @@
 {% extends 'layout.html' %}
 
 {% from "button/macro.njk" import govukButton %}
- {% from "panel/macro.njk" import govukPanel %}
+{% from "panel/macro.njk" import govukPanel %}
 
 {% block content %}
   <div class="govuk-body">
+    {# Override panel style to set the colour #}
     <style>
       .govuk-panel--confirmation {
         color: #ffffff;

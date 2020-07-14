@@ -1,6 +1,5 @@
-//const joi = require('@hapi/joi')
+// const joi = require('@hapi/joi')
 const data = require('../../data/data.json')
-
 
 const handlers = {
   get: (request, h) => {
@@ -11,8 +10,8 @@ const handlers = {
       wasteCode: wasteData.wasteCode,
       wasteName: wasteData.wasteName1,
       countryDisplayName: countryData.countryDisplayName
-      })
-    },
+    })
+  },
   post: (request, h) => {
     const wasteData = request.yar.get('wasteData')
     const countryData = request.yar.get('countryData')
@@ -24,20 +23,19 @@ const handlers = {
         request.yar.set('outcome', {
           outcomeInt: element.fields[countryData.countryName]
         })
-
       }
     })
 
     return h.redirect('outcome')
-    }
   }
-  
- module.exports = [{
-    method: 'GET',
-    path: '/confirm',
-    handler: handlers.get
-  }, {
-    method: 'POST',
-    path: '/confirm',
-    handler: handlers.post
-  }]
+}
+
+module.exports = [{
+  method: 'GET',
+  path: '/confirm',
+  handler: handlers.get
+}, {
+  method: 'POST',
+  path: '/confirm',
+  handler: handlers.post
+}]

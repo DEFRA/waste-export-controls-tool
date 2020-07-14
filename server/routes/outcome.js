@@ -1,4 +1,4 @@
-const joi = require('@hapi/joi')
+// const joi = require('@hapi/joi')
 
 const handlers = {
   get: (request, h) => {
@@ -19,11 +19,10 @@ const handlers = {
       title: 'Hello',
       message: 'World'
     })
-   }
   }
+}
 
-
-  module.exports = [{
+module.exports = [{
   method: 'GET',
   path: '/outcome',
   handler: handlers.get

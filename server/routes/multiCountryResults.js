@@ -1,7 +1,6 @@
 // const joi = require('@hapi/joi')
 const colData = require('../../data/col_data.json')
 
-
 const handlers = {
   get: (request, h) => {
     const countryData = request.yar.get('countryData')
@@ -28,6 +27,7 @@ const handlers = {
       })
       return h.redirect('confirm')
     } else {
+      const countryData = request.yar.get('countryData')
 
       return h.view('multiCountryResults', {
         titleText: 'Select a country',

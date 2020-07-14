@@ -38,14 +38,14 @@ const handlers = {
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {
-        request.yar.set('countryData', {
-          countryName: countrySearchResults[0].value,
-          countryDisplayName: countrySearchResults[0].text
-        })
-        return h.redirect('confirm')
+      request.yar.set('countryData', {
+        countryName: countrySearchResults[0].value,
+        countryDisplayName: countrySearchResults[0].text
+      })
+      return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
-        request.yar.set('countryData', { countrySearchResults: countrySearchResults })
-        return h.redirect('multiCountryResults')
+      request.yar.set('countryData', { countrySearchResults: countrySearchResults })
+      return h.redirect('multiCountryResults')
     }
   }
 }

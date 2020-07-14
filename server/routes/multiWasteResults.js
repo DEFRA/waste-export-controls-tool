@@ -1,15 +1,14 @@
 // const joi = require('@hapi/joi')
 const data = require('../../data/data.json')
 
-
 const handlers = {
   get: (request, h) => {
-    const searchData = request.yar.get('searchData')
+    const wasteData = request.yar.get('wasteData')
 
     return h.view('multiWasteResults', {
       titleText: 'Select a Waste Type',
       hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-      itemData: searchData.wasteSearchResults
+      itemData: wasteData.wasteSearchResults
     })
   },
   post: (request, h) => {
@@ -28,20 +27,20 @@ const handlers = {
           })
         }
       })
-  
-      request.yar.set('searchData', {
+
+      request.yar.set('wasteData', {
         wasteName: payload.selectWasteResult,
         wasteCode: wasteDetails[0].wasteCode,
         wasteName1: wasteDetails[0].wasteName1
       })
       return h.redirect('exportTo')
     } else {
-      const searchData = request.yar.get('searchData')
+      const wasteData = request.yar.get('wasteData')
 
       return h.view('multiWasteResults', {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-        itemData: searchData.wasteSearchResults,
+        itemData: wasteData.wasteSearchResults,
         errorMessage: 'Please select a waste type from the list or use the Back link to search again'
       })
     }
