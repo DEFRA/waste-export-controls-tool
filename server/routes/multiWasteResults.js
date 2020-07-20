@@ -19,19 +19,19 @@ const handlers = {
 
       data.forEach(element => {
         // Perform a search to see if the selectedWasteName exists within the wasteName string
-        if (element.fields.wasteName.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
+        if (element.wasteCodeNameSuffix.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
           // For every positive result add it to the wasteSearchResults
           wasteDetails.push({
-            wasteCode: element.fields.Title,
-            wasteName1: element.fields.Name1
+            wasteCode: element.Title,
+            wasteName: element.wasteName
           })
         }
       })
 
       request.yar.set('wasteData', {
-        wasteName: payload.selectWasteResult,
+        wasteCodeNameSuffix: payload.selectWasteResult,
         wasteCode: wasteDetails[0].wasteCode,
-        wasteName1: wasteDetails[0].wasteName1
+        wasteName: wasteDetails[0].wasteName
       })
       return h.redirect('exportTo')
     } else {

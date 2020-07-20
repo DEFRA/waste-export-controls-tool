@@ -1,25 +1,5 @@
 [{
     "columnGroup": "Custom Columns",
-    "displayName": "wasteCategory",
-    "name": "wasteCategory",
-    "readOnly": false
-}, {
-    "columnGroup": "Custom Columns",
-    "displayName": "Name1",
-    "name": "Name1",
-    "readOnly": false
-}, {
-    "columnGroup": "Custom Columns",
-    "displayName": "suffix",
-    "name": "suffix",
-    "readOnly": false
-}, {
-    "columnGroup": "Custom Columns",
-    "displayName": "concatonatedWasteName",
-    "name": "concatonatedWasteName",
-    "readOnly": false
-}, {
-    "columnGroup": "Custom Columns",
     "displayName": "Afghanistan",
     "name": "Afghanistan",
     "readOnly": false

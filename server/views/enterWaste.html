@@ -15,7 +15,7 @@
     {# JavaScript version of textbox with autocomplete #}
     <div id="hideThisFromNonJs" style="display:none">
       <span class="govuk-body">{{ textLine1 }}</span>
-      <label for="wasteName" class="govuk-caption-m">{{ textLine2 }}</label>
+      <label for="wasteCodeNameSuffix" class="govuk-caption-m">{{ textLine2 }}</label>
       <p>{{ textLine3 }}</p>
 
     {% if errorMessage %}
@@ -77,8 +77,8 @@
   <script type="text/javascript">
     accessibleAutocomplete({
       element: document.querySelector('#selectedWasteName'),
-      id: 'wasteName',
-      source: {{ wasteName | dump | safe }},
+      id: 'wasteCodeNameSuffix',
+      source: {{ wasteCodeNameSuffix | dump | safe }},
       name: 'selectedWasteName'
     })
   </script>
