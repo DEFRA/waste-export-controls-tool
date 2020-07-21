@@ -2,6 +2,7 @@ const colData = require('../../data/col_data.json')
 
 // Extract the country data
 const countryDisplayName = []
+// Set the initial text to be displayed in selectlist
 let countryDisplayNameNoJs = [{
   value: 'XXX',
   text: ''
