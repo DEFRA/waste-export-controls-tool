@@ -1,28 +1,26 @@
 {% extends 'layout.html' %}
 
-{% from "date-input/macro.njk" import govukDateInput %}
+{% from "button/macro.njk" import govukButton %}
 
 {% block content %}
   <div class="govuk-body">
-    {{
-      govukDateInput({
-        id: "dob",
-        namePrefix: "dob",
-        fieldset: {
-          legend: {
-            text: "What is your date of birth?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--xl"
-          }
-        },
-        hint: {
-          text: "For example, 31 3 1980"
-        }
-      })
-    }}
+    <h1 class="govuk-heading-xl">Check the controls for exporting your waste</h1>
+
+    <p>You can use this service to find out what controls apply to exporting your waste from England, Wales, Scotland, or Northern Ireland to the country it’s destined for.</p>
+
+    <p><strong>You should not use this service to classify your waste. It is your responsibility to classify your waste correctly. Further information on waste classification is available <a href="https://www.gov.uk/how-to-classify-different-types-of-waste" class="govuk-link">here:</a></strong></p>
+
+    <p>This service only covers the waste types listed in <strong>Annexes III and IV</strong> of the <strong><a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32006R1013" class="govuk-link">Waste Shipments Regulation</a></strong>. There are many wastes not included in these Regulations. If you cannot find the waste you want to export you must describe it as ‘not listed’ and <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#notification-controls-how-to-comply" class="govuk-link">notification controls will apply</a>.</p>
+
+    <p>Please read <a href="https://www.gov.uk/guidance/importing-and-exporting-waste" class="govuk-link">our guidance webpage</a> for full information about waste shipments.<p>
 
 
-    <p>{{title}}</p>
-    <p>{{message}}</p>
+    {{ govukButton({
+        text: "Start now",
+        href: "enterWaste",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+      }) }}
+      
   </div>
 {% endblock %}

@@ -4,10 +4,7 @@ module.exports = [{
   method: 'GET',
   path: '/',
   handler: (request, h) => {
-    return h.view('home', {
-      title: 'Hello',
-      message: 'World'
-    })
+    return h.view('home')
   }
 }, {
   method: 'POST',

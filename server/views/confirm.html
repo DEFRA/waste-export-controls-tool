@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "summary-list/macro.njk" import govukSummaryList %}
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block content %}
+  <div class="govuk-body">
+    <h1 class="govuk-heading-xl">Confim waste and county details</h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Waste code"
+          },
+          value: {
+            text: wasteCode
+          },
+          actions: {
+            items: [
+              {
+                href: "",
+                text: "",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Waste name"
+          },
+          value: {
+            text: wasteName
+          },
+          actions: {
+            items: [
+              {
+                href:  "/enterWaste",
+                text: "Change",
+                visuallyHiddenText: "Change the name of the waste"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Destination country"
+          },
+          value: {
+            text: countryDisplayName
+          },
+          actions: {
+            items: [
+              {
+                href: " /exportTo",
+                text: "Change",
+                visuallyHiddenText: "Change the destination country"
+              }
+            ]
+          }
+        }   
+      ]
+    }) }}  
+
+    <form method="post">
+      {{ govukButton({
+          text: "Continue"
+        }) }}
+    </form>
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "/exportTo"
+    }) }}
+
+       
+  </div>
+{% endblock %}

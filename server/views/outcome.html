@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "panel/macro.njk" import govukPanel %}
+{% from "summary-list/macro.njk" import govukSummaryList %}
+
+{% block content %}
+  <div class="govuk-body">
+    {# Override panel style to change it's background colour #}
+    <style>
+      .govuk-panel--confirmation {
+        background: {{ panelColor }};
+      }
+    </style>
+
+    {{ govukPanel({
+      titleText: panelTitle,
+      html: panelText
+    }) }}
+
+    <h2 class="govuk-heading-m">Your search details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Waste code"
+          },
+          value: {
+            text: wasteCode
+          }
+        },
+        {
+          key: {
+            text: "Waste name"
+          },
+          value: {
+            text: wasteName
+          }
+        },
+        {
+          key: {
+            text: "Destination country"
+          },
+          value: {
+            text: countryName
+          }
+        }
+      ]
+    }) }}
+
+    {# Overridden the position as the default was pushing it to the edge of the screen #}
+    <style>
+    .govuk-warning-text__icon {
+      position: relative;
+    </style>
+
+    {# Table that displays the warnings #}
+    <table cellpadding="10">
+      {{ warningList | safe }}
+    </table>
+    <br>
+
+    <h2 class="govuk-heading-m">Need further guidance?</h2>
+
+    <p>Find more advice and guidance on exporting waste at <a href="https://www.gov.uk/guidance/importing-and-exporting-waste" class="govuk-link">https://www.gov.uk/guidance/importing-and-exporting-waste</a>.</p>
+
+    <p>Contact your UK Regulatory Authority</p>
+
+    <ul class="govuk-list" style=padding-left:15px>
+      <li>
+        <strong>Environment Agency</strong><br>
+        <a class="govuk-link" href="mailto:askshipments@environment-agency.gov.uk">askshipments@environment-agency.gov.uk</a>
+      </li>
+      <br>
+      <li>
+        <strong>Natural Resources Wales</strong><br>
+        Waste Shipment Unit 0300 065 3073<br>
+        <a class="govuk-link" href="mailto:waste-shipments@naturalresourceswales.gov.uk">waste-shipments@naturalresourceswales.gov.uk</a>
+      </li>
+      <br>
+      <li>
+        <strong>Scottish Environmental Protection Agency</strong><br>
+        <a class="govuk-link" href="mailto:transfrontier@sepa.org.uk">transfrontier@sepa.org.uk</a>
+      </li>
+      <br>
+      <li>
+        <strong>Northern Ireland Environment Agency</strong><br>
+        Transfrontier Shipment of Waste Helpline 028 9056 9742<br>
+        <a class="govuk-link" href="mailto:xxxxxxxxxx@daera-ni.gov.uk">xxxxxxxxxx@daera-ni.gov.uk</a>
+      </li>
+    </ul>
+
+    {{ govukButton({
+          text: "Start a new check",
+          href: "/"
+        }) }}
+  </div>
+{% endblock %}

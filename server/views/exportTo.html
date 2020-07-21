@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "input/macro.njk" import govukInput %}
+
+{% block content %}
+  <div class="govuk-body">
+    <h1 class="govuk-heading-xl">Which country do you want to export to?</h1>
+
+    <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
+
+    <form method="post" autocomplete="off">
+
+    {# JavaScript version of textbox with autocomplete #}
+    <div id="hideThisFromNonJs" style="display:none">
+      <span class="govuk-body">{{ labelText }}</span>
+      <label for="selectCountry" class="govuk-caption-m">{{ hintText }}</label>
+      <br>
+
+      {% if errorMessage %}
+        <span id="error-message" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+      </span>
+      {% endif %}
+
+      <div id="selectedCountry" class="autocomplete-wrapper"></div>
+      <br>
+    </div>
+
+    {# Non JavaScript version of textbox #}
+    <noscript>
+      {% if errorMessage %}
+        {{ govukInput({
+          label: {
+            text: labelText
+          },
+          hint: {
+            text: hintText
+          },
+          errorMessage: {
+            text: errorMessage
+          },
+          id: "selectedCountry",
+          name: "selectedCountry"
+        }) }}
+      {% else %}
+        {{ govukInput({
+          label: {
+            text: labelText
+          },
+          hint: {
+            text: hintText
+          },
+          id: "selectedCountry",
+          name: "selectedCountry"
+        }) }}
+      {% endif %}
+    </noscript>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    <br>
+    {{ govukBackLink({
+      text: "Back",
+      href: "/enterWaste"
+    }) }}
+
+    </form>
+  </div>
+
+
+  <script type="text/javascript" src="assets/accessible-autocomplete.min.js"></script>
+
+  <script type="text/javascript">
+    document.getElementById('hideThisFromNonJs').style.display='block';
+  </script>
+
+  <script type="text/javascript">
+    accessibleAutocomplete({
+      element: document.querySelector('#selectedCountry'),
+      id: 'selectCountry',
+      source: {{ countryDisplayName | dump | safe }},
+      name: 'selectedCountry'
+    })
+  </script>
+{% endblock %}
