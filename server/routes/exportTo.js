@@ -11,8 +11,8 @@ const handlers = {
     // Respond with the view
     return h.view('exportTo', {
       countryDisplayName: countryDisplayName,
-      labelText: 'Search for your intended destination country',
-      hintText: 'For example, type in: Belguim'
+      labelText: 'Search for the country you intend to export your waste to',
+      hintText: 'For example, Belguim'
     })
   },
   post: (request, h) => {
@@ -33,8 +33,8 @@ const handlers = {
     if (countrySearchResults.length === 0) {
       return h.view('exportTo', {
         countryDisplayName: countryDisplayName,
-        labelText: 'Search for your intended destination country',
-        hintText: 'For example, type in: Belguim',
+        labelText: 'Search for the country you intend to export your waste to',
+        hintText: 'For example, Belguim',
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {

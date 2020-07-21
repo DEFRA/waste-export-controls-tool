@@ -12,8 +12,8 @@ const handlers = {
     return h.view('enterWaste', {
       wasteCodeNameSuffix: wasteCodeNameSuffix,
       textLine1: 'Search for your waste by the waste code or a key word',
-      textLine2: 'For example, type in:  A1010 or plastic',
-      textLine3: 'Select your waste from the drop down list, or click “Continue” to see a full list of matches.'
+      textLine2: 'For example, A1010 or plastic',
+      textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.'
     })
   },
   post: (request, h) => {
@@ -40,8 +40,8 @@ const handlers = {
       return h.view('enterWaste', {
         wasteCodeNameSuffix: wasteCodeNameSuffix,
         textLine1: 'Search for your waste by the waste code or a key word',
-        textLine2: 'For example, type in: A1010 or plastic',
-        textLine3: 'Select your waste from the drop down list, or click “Continue” to see a full list of matches.',
+        textLine2: 'For example, A1010 or plastic',
+        textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.',
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (wasteSearchResults.length === 1) {
