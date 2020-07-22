@@ -20,6 +20,7 @@ const handlers = {
     const payload = request.payload
     const wasteSearchResults = []
     const wasteDetails = []
+    const countryData = request.yar.get('countryData')
 
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
@@ -50,9 +51,13 @@ const handlers = {
         wasteCode: wasteDetails[0].wasteCode,
         wasteName: wasteDetails[0].wasteName
       })
-      return h.redirect('exportTo')
+      if (countryData) {
+        return h.redirect('confirm')
+      } else {
+        return h.redirect('exportTo')
+      }
     } else if (wasteSearchResults.length > 1) {
-      request.yar.set('wasteData', { wasteSearchResults: wasteSearchResults })
+      request.yar.set('wasteSearchResults', wasteSearchResults)
       return h.redirect('multiWasteResults')
     }
   }

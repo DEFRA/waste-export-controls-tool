@@ -2,7 +2,7 @@
 
 {% from "button/macro.njk" import govukButton %}
 {% from "back-link/macro.njk" import govukBackLink %}
-{% from "input/macro.njk" import govukInput %}
+{% from "select/macro.njk" import govukSelect %}
 
 {% block content %}
   <div class="govuk-body">
@@ -31,29 +31,31 @@
     {# Non JavaScript version of textbox #}
     <noscript>
       {% if errorMessage %}
-        {{ govukInput({
+        {{ govukSelect({
+          id: "selectedCountry",
+          name: "selectedCountry",
           label: {
             text: labelText
           },
           hint: {
             text: hintText
           },
+          items: countryDisplayNameNoJs,
           errorMessage: {
             text: errorMessage
-          },
-          id: "selectedCountry",
-          name: "selectedCountry"
+          }
         }) }}
       {% else %}
-        {{ govukInput({
+        {{ govukSelect({
+          id: "selectedCountry",
+          name: "selectedCountry",
           label: {
             text: labelText
           },
           hint: {
             text: hintText
           },
-          id: "selectedCountry",
-          name: "selectedCountry"
+          items: countryDisplayNameNoJs
         }) }}
       {% endif %}
     </noscript>

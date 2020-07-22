@@ -3,12 +3,12 @@ const colData = require('../../data/col_data.json')
 
 const handlers = {
   get: (request, h) => {
-    const countryData = request.yar.get('countryData')
+    const countrySearchResults = request.yar.get('countrySearchResults')
 
     return h.view('multiCountryResults', {
       titleText: 'Select a country',
       hintText: 'Your search matched the following countries. Please choose one or go back to search screen',
-      itemData: countryData.countrySearchResults
+      itemData: countrySearchResults
     })
   },
   post: (request, h) => {
@@ -27,12 +27,12 @@ const handlers = {
       })
       return h.redirect('confirm')
     } else {
-      const countryData = request.yar.get('countryData')
+      const countrySearchResults = request.yar.get('countrySearchResults')
 
       return h.view('multiCountryResults', {
         titleText: 'Select a country',
         hintText: 'Your search matched the following countries. Please choose one or go back to search screen',
-        itemData: countryData.countrySearchResults,
+        itemData: countrySearchResults,
         errorMessage: 'Please select a country from the list or use the Back link to search again'
       })
     }
