@@ -13,6 +13,7 @@ const handlers = {
   },
   post: (request, h) => {
     const payload = request.payload
+    const countryData = request.yar.get('countryData')
 
     if (payload.selectWasteResult) {
       const wasteDetails = []
@@ -33,7 +34,11 @@ const handlers = {
         wasteCode: wasteDetails[0].wasteCode,
         wasteName: wasteDetails[0].wasteName
       })
-      return h.redirect('exportTo')
+      if (countryData) {
+        return h.redirect('confirm')
+      } else {
+        return h.redirect('exportTo')
+      }
     } else {
       const wasteSearchResults = request.yar.get('wasteSearchResults')
 

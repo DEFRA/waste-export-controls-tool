@@ -91,9 +91,34 @@
       </li>
     </ul>
 
+    <form method="post">
+    {# If JS is disabled hide the "Print this page" button #}
+    <noscript>
+        {{ govukButton({
+          text: "Start a new check"
+        }) }}
+    </noscript>
+
+    <div id="hideThisFromNonJs" style="display:none">
     {{ govukButton({
           text: "Start a new check",
-          href: "/"
+          classes: "govuk-!-margin-right-1"
         }) }}
+
+    {{ govukButton({
+        element: "a",
+        text: "Print this page",
+        classes: "govuk-button--secondary",
+        attributes: {
+          onclick: "window.print()"
+        }
+      }) }}
+      </div>
+    </form>
   </div>
+
+  <script type="text/javascript">
+    document.getElementById('hideThisFromNonJs').style.display='block';
+  </script>
+
 {% endblock %}

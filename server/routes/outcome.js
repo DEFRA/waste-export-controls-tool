@@ -63,6 +63,10 @@ const handlers = {
       countryName: countryData.countryDisplayName,
       warningList: warningList
     })
+  },
+  post: (request, h) => {
+    request.yar.reset()
+    return h.redirect('enterWaste')
   }
 }
 
@@ -70,4 +74,8 @@ module.exports = [{
   method: 'GET',
   path: '/outcome',
   handler: handlers.get
+}, {
+  method: 'POST',
+  path: '/outcome',
+  handler: handlers.post
 }]
