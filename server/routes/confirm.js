@@ -20,9 +20,7 @@ const handlers = {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
       if (element.wasteCodeNameSuffix.toUpperCase().includes(wasteData.wasteCodeNameSuffix.toUpperCase())) {
         // Add the result to yar. Expected values 1-4
-        request.yar.set('outcome', {
-          outcomeInt: element[countryData.countryName]
-        })
+        request.yar.set('outcomeInt', element[countryData.countryName])
       }
     })
 

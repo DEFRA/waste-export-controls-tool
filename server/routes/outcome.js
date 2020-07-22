@@ -4,10 +4,10 @@ const handlers = {
   get: (request, h) => {
     const wasteData = request.yar.get('wasteData')
     const countryData = request.yar.get('countryData')
-    const outcome = request.yar.get('outcome')
+    const outcomeInt = request.yar.get('outcomeInt')
 
     function generateOutcomeData () {
-      if (outcome.outcomeInt === 1) {
+      if (outcomeInt === 1) {
         return {
           panelColor: '#FF0000', // Red
           panelTitle: 'Export is prohibited',
@@ -17,7 +17,7 @@ const handlers = {
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>If you do export your waste to this country you will be breaking the law.</td></tr>'
 
         }
-      } else if (outcome.outcomeInt === 2) {
+      } else if (outcomeInt === 2) {
         return {
           panelColor: '#00703c', // Green
           panelTitle: 'Notification controls',
@@ -29,7 +29,7 @@ const handlers = {
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>Check the <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#apply-for-import-or-export-notification-controls" class="govuk-link">notification procedure</a> and <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#notification-controls-how-to-comply" class="govuk-link">how to comply with your notification</a> on the waste import and export webpage.</td></tr>' +
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>If you do not comply with all the notification control requirements you will be breaking the law.</td></tr>'
         }
-      } else if (outcome.outcomeInt === 3) {
+      } else if (outcomeInt === 3) {
         return {
           panelColor: '#00703c', // Green
           panelTitle: 'Article 18 controls',
@@ -40,7 +40,7 @@ const handlers = {
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>Check how to ship ‘Green List’ waste under <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#import-or-export-article-18-controls" class="govuk-link">Article 18 controls</a> on the waste import and export webpages.</td></tr>' +
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>If you do not comply with all the Article 18 control requirements you will be breaking the law.</td></tr>'
         }
-      } else if (outcome.outcomeInt === 4) {
+      } else if (outcomeInt === 4) {
         return {
           panelColor: '#E68E00', // Amber
           panelTitle: 'More information is needed',

@@ -52,7 +52,7 @@ const handlers = {
       })
       return h.redirect('exportTo')
     } else if (wasteSearchResults.length > 1) {
-      request.yar.set('wasteData', { wasteSearchResults: wasteSearchResults })
+      request.yar.set('wasteSearchResults', wasteSearchResults)
       return h.redirect('multiWasteResults')
     }
   }

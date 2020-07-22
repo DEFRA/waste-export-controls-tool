@@ -2,7 +2,7 @@ const colData = require('../../data/col_data.json')
 
 // Extract the country data
 const countryDisplayName = []
-// Set the initial text to be displayed in selectlist
+// Set the initial text to be displayed in no JavaScript selectlist
 let countryDisplayNameNoJs = [{
   value: 'XXX',
   text: ''
@@ -55,7 +55,7 @@ const handlers = {
       })
       return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
-      request.yar.set('countryData', { countrySearchResults: countrySearchResults })
+      request.yar.set('countrySearchResults', countrySearchResults)
       return h.redirect('multiCountryResults')
     }
   }
