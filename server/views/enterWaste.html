@@ -15,11 +15,11 @@
     {# JavaScript version of textbox with autocomplete #}
     <div id="hideThisFromNonJs" style="display:none">
       <span class="govuk-body">{{ textLine1 }}</span>
-      <label for="wasteName" class="govuk-caption-m">{{ textLine2 }}</label>
-      <p>{{ textLine3 }}</p>
+      <label for="wasteCodeNameSuffix" class="govuk-caption-m">{{ textLine2 }}</label>
+      <p>{{ textLine3 | safe }}</p>
 
     {% if errorMessage %}
-      <span id="passport-issued-error" class="govuk-error-message">
+      <span id="error-message" class="govuk-error-message">
         <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
       </span>
     {% endif %}
@@ -34,7 +34,7 @@
       <p>{{ textLine1 }}<br><span class="govuk-caption-m">{{ textLine2 }}</span></p>
         {{ govukInput({
           label: {
-            text: textLine3
+            text: textLine3 | safe
           },
           errorMessage: {
             text: errorMessage
@@ -46,7 +46,7 @@
       <p>{{ textLine1 }}<br><span class="govuk-caption-m">{{ textLine2 }}</span></p>
         {{ govukInput({
           label: {
-            text: textLine3
+            text: textLine3 | safe
           },
           id: "selectedWasteName",
           name: "selectedWasteName"
@@ -77,8 +77,8 @@
   <script type="text/javascript">
     accessibleAutocomplete({
       element: document.querySelector('#selectedWasteName'),
-      id: 'wasteName',
-      source: {{ wasteName | dump | safe }},
+      id: 'wasteCodeNameSuffix',
+      source: {{ wasteCodeNameSuffix | dump | safe }},
       name: 'selectedWasteName'
     })
   </script>

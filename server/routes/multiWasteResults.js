@@ -3,44 +3,49 @@ const data = require('../../data/data.json')
 
 const handlers = {
   get: (request, h) => {
-    const wasteData = request.yar.get('wasteData')
+    const wasteSearchResults = request.yar.get('wasteSearchResults')
 
     return h.view('multiWasteResults', {
       titleText: 'Select a Waste Type',
       hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-      itemData: wasteData.wasteSearchResults
+      itemData: wasteSearchResults
     })
   },
   post: (request, h) => {
     const payload = request.payload
+    const countryData = request.yar.get('countryData')
 
     if (payload.selectWasteResult) {
       const wasteDetails = []
 
       data.forEach(element => {
         // Perform a search to see if the selectedWasteName exists within the wasteName string
-        if (element.fields.wasteName.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
+        if (element.wasteCodeNameSuffix.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
           // For every positive result add it to the wasteSearchResults
           wasteDetails.push({
-            wasteCode: element.fields.Title,
-            wasteName1: element.fields.Name1
+            wasteCode: element.Title,
+            wasteName: element.wasteName
           })
         }
       })
 
       request.yar.set('wasteData', {
-        wasteName: payload.selectWasteResult,
+        wasteCodeNameSuffix: payload.selectWasteResult,
         wasteCode: wasteDetails[0].wasteCode,
-        wasteName1: wasteDetails[0].wasteName1
+        wasteName: wasteDetails[0].wasteName
       })
-      return h.redirect('exportTo')
+      if (countryData) {
+        return h.redirect('confirm')
+      } else {
+        return h.redirect('exportTo')
+      }
     } else {
-      const wasteData = request.yar.get('wasteData')
+      const wasteSearchResults = request.yar.get('wasteSearchResults')
 
       return h.view('multiWasteResults', {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-        itemData: wasteData.wasteSearchResults,
+        itemData: wasteSearchResults,
         errorMessage: 'Please select a waste type from the list or use the Back link to search again'
       })
     }

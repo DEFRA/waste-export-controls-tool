@@ -1,18 +1,28 @@
 const colData = require('../../data/col_data.json')
 
-// Extract just the wasteName from the main data file
+// Extract the country data
 const countryDisplayName = []
+// Set the initial text to be displayed in no JavaScript selectlist
+let countryDisplayNameNoJs = [{
+  value: 'XXX',
+  text: ''
+}]
 colData.forEach(element => {
   countryDisplayName.push(element.displayName)
+  countryDisplayNameNoJs.push({
+    value: element.displayName,
+    text: element.displayName
+  })
 })
 
 const handlers = {
   get: (request, h) => {
     // Respond with the view
     return h.view('exportTo', {
-      countryDisplayName: countryDisplayName,
-      labelText: 'Search for your intended destination country',
-      hintText: 'For example, type in: Belguim'
+      countryDisplayName: countryDisplayName.sort(),
+      countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
+      labelText: 'Search for the country you intend to export your waste to',
+      hintText: 'For example, Belguim'
     })
   },
   post: (request, h) => {
@@ -32,9 +42,10 @@ const handlers = {
 
     if (countrySearchResults.length === 0) {
       return h.view('exportTo', {
-        countryDisplayName: countryDisplayName,
-        labelText: 'Search for your intended destination country',
-        hintText: 'For example, type in: Belguim',
+        countryDisplayName: countryDisplayName.sort(),
+        countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
+        labelText: 'Search for the country you intend to export your waste to',
+        hintText: 'For example, Belguim',
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {
@@ -44,7 +55,7 @@ const handlers = {
       })
       return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
-      request.yar.set('countryData', { countrySearchResults: countrySearchResults })
+      request.yar.set('countrySearchResults', countrySearchResults)
       return h.redirect('multiCountryResults')
     }
   }

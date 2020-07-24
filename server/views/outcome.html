@@ -63,7 +63,7 @@
 
     <h2 class="govuk-heading-m">Need further guidance?</h2>
 
-    <p>More advice and guidance on exporting waste can be found at <a href="https://www.gov.uk/guidance/importing-and-exporting-waste" class="govuk-link">https://www.gov.uk/guidance/importing-and-exporting-waste</a>.</p>
+    <p>Find more advice and guidance on exporting waste at <a href="https://www.gov.uk/guidance/importing-and-exporting-waste" class="govuk-link">https://www.gov.uk/guidance/importing-and-exporting-waste</a>.</p>
 
     <p>Contact your UK Regulatory Authority</p>
 
@@ -91,9 +91,34 @@
       </li>
     </ul>
 
+    <form method="post">
+    {# If JS is disabled hide the "Print this page" button #}
+    <noscript>
+        {{ govukButton({
+          text: "Start a new check"
+        }) }}
+    </noscript>
+
+    <div id="hideThisFromNonJs" style="display:none">
     {{ govukButton({
           text: "Start a new check",
-          href: "/"
+          classes: "govuk-!-margin-right-1"
         }) }}
+
+    {{ govukButton({
+        element: "a",
+        text: "Print this page",
+        classes: "govuk-button--secondary",
+        attributes: {
+          onclick: "window.print()"
+        }
+      }) }}
+      </div>
+    </form>
   </div>
+
+  <script type="text/javascript">
+    document.getElementById('hideThisFromNonJs').style.display='block';
+  </script>
+
 {% endblock %}
