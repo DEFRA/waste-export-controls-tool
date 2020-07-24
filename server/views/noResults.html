@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% from "button/macro.njk" import govukButton %}
+
+{% from "panel/macro.njk" import govukPanel %}
+
+{% block content %}
+  <div class="govuk-body">
+    
+     <style>
+      .govuk-panel--confirmation {
+        background:	#808080}
+    </style>
+
+     {{ govukPanel({
+      titleText: "Waste not found",
+      html: ""
+    }) }}
+
+    <p><strong>The search you have entered does not match any wastes</strong></p>
+
+    <p>Please check you have entered the waste code or key word correctly</p>
+
+    <p>This service only covers the waste types listed in <strong>Annexes III and IV </strong> of the <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32006R1013" class="govuk-link">Waste Shipments Regulation</a> 
+    <br>
+    There are many wastes that are not included in these Regulations. If you cannot find the waste you want to export you must describe it as not listed and <a href= "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32006R1013" class="govuk-link">Notification controls will apply.</a>
+    </p>
+  </div>
+{% endblock %}
