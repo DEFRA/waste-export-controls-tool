@@ -7,6 +7,7 @@ const handlers = {
     const outcomeInt = request.yar.get('outcomeInt')
 
     function generateOutcomeData () {
+
       if (outcomeInt === 1) {
         return {
           panelColor: '#FF0000', // Red

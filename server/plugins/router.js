@@ -7,7 +7,8 @@ const routes = [].concat(
   require('../routes/exportTo'),
   require('../routes/multiCountryResults'),
   require('../routes/confirm'),
-  require('../routes/outcome')
+  require('../routes/outcome'),
+  require('../routes/noResults')
 )
 
 module.exports = {
