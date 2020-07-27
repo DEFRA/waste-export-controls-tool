@@ -3,7 +3,7 @@ const colData = require('../../data/col_data.json')
 // Extract the country data
 const countryDisplayName = []
 // Set the initial text to be displayed in no JavaScript selectlist
-let countryDisplayNameNoJs = [{
+const countryDisplayNameNoJs = [{
   value: 'XXX',
   text: ''
 }]

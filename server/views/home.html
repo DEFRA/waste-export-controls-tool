@@ -16,16 +16,32 @@
     <p>Please read <a href="https://www.gov.uk/guidance/importing-and-exporting-waste" class="govuk-link">our guidance webpage</a> for full information about waste shipments.<p>
 
     <form method="post">
-      {{ govukCheckboxes({
-        idPrefix: "confirmCheckbox",
-        name: "confirmCheckbox",
-        items: [
-          {
-            value: true,
-            text: "<strong>Please tick to confirm that you have read this information.</strong>" | safe
+      {% if errorMessage %}
+        {{ govukCheckboxes({
+          idPrefix: "confirmCheckbox",
+          name: "confirmCheckbox",
+          items: [
+            {
+              value: true,
+              text: "<strong>Please tick to confirm that you have read this information.</strong>" | safe
+            }
+          ],
+          errorMessage: {
+            text: errorMessage
           }
-        ]
-      }) }}
+        }) }}
+      {% else %}
+        {{ govukCheckboxes({
+          idPrefix: "confirmCheckbox",
+          name: "confirmCheckbox",
+          items: [
+            {
+              value: true,
+              text: "<strong>Please tick to confirm that you have read this information.</strong>" | safe
+            }
+          ]
+        }) }}
+      {% endif %}
 
       {{ govukButton({
           text: "Start now",

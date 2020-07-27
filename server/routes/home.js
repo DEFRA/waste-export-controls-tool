@@ -1,5 +1,3 @@
-const joi = require('@hapi/joi')
-
 const handlers = {
   get: (request, h) => {
     request.yar.reset()
@@ -7,9 +5,14 @@ const handlers = {
   },
   post: (request, h) => {
     const payload = request.payload
-    console.log(`...and the value is....${payload.confirmCheckbox}`)
-    request.yar.set('confirmCheckbox', payload.confirmCheckbox)
-    return h.redirect('enterWaste')
+    if (payload.confirmCheckbox) {
+      request.yar.set('confirmCheckbox', payload.confirmCheckbox)
+      return h.redirect('enterWaste')
+    } else {
+      return h.view('home', {
+        errorMessage: 'Please check this box once you have read the information'
+      })
+    }
   }
 }
 
