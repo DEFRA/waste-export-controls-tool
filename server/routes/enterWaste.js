@@ -38,6 +38,12 @@ const handlers = {
     })
 
     if (wasteSearchResults.length === 0) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'waste search',
+        action: 'failed',
+        label: payload.selectedWasteName
+      })
       return h.view('enterWaste', {
         wasteCodeNameSuffix: wasteCodeNameSuffix,
         textLine1: 'Search for your waste by the waste code or a key word',
@@ -46,6 +52,12 @@ const handlers = {
         errorMessage: 'Waste not found, please try again.'
       })
     } else if (wasteSearchResults.length === 1) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'waste search',
+        action: 'single result',
+        label: payload.selectedWasteName
+      })
       request.yar.set('wasteData', {
         wasteCodeNameSuffix: wasteSearchResults[0].value,
         wasteCode: wasteDetails[0].wasteCode,
@@ -57,6 +69,12 @@ const handlers = {
         return h.redirect('exportTo')
       }
     } else if (wasteSearchResults.length > 1) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'waste search',
+        action: 'multiple results',
+        label: payload.selectedWasteName
+      })
       request.yar.set('wasteSearchResults', wasteSearchResults)
       return h.redirect('multiWasteResults')
     }

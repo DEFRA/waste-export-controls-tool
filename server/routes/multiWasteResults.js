@@ -34,6 +34,12 @@ const handlers = {
         wasteCode: wasteDetails[0].wasteCode,
         wasteName: wasteDetails[0].wasteName
       })
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'multiwaste search',
+        action: 'single result',
+        label: payload.selectWasteResult
+      })
       if (countryData) {
         return h.redirect('confirm')
       } else {
@@ -41,7 +47,11 @@ const handlers = {
       }
     } else {
       const wasteSearchResults = request.yar.get('wasteSearchResults')
-
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'multiwaste search',
+        action: 'no waste selected'
+      })
       return h.view('multiWasteResults', {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',

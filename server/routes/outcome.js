@@ -54,6 +54,11 @@ const handlers = {
     // Get the data for the view based on the outcome result
     const { panelColor, panelTitle, panelText, warningList } = generateOutcomeData()
 
+    // Send an event to Google Analytics
+    request.ga.event({
+      category: 'outcome',
+      action: panelTitle
+    })
     return h.view('outcome', {
       panelColor: panelColor,
       panelTitle: panelTitle,
