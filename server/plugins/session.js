@@ -2,7 +2,9 @@ const generator = require('generate-password')
 
 const password = generator.generate({
   length: 40,
-  numbers: true
+  numbers: true,
+  uppercase: true,
+  lowercase: true
 })
 
 module.exports = {
