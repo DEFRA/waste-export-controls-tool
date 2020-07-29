@@ -9,7 +9,7 @@ module.exports = {
     ],
     sessionIdProducer: async request => {
       // Would normally use the request object rather than "return 'test-session'" to retrieve the proper session identifier
-      return request
+      return request.yar.id
     },
     batchSize: 20,
     batchInterval: 15000
