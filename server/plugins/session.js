@@ -1,8 +1,15 @@
+const generator = require('generate-password')
+
+const password = generator.generate({
+  length: 40,
+  numbers: true
+})
+
 module.exports = {
   plugin: require('@hapi/yar'),
   options: {
     cookieOptions: {
-      password: 'somePassword45656756u5thrs5w4aerhw45ujtmfth4wyh34uikr65rteyq35ygetjkr765etu3w45ht',
+      password: password,
       isSecure: process.env.NODE_ENV !== 'development'
     },
     maxCookieSize: 1024
