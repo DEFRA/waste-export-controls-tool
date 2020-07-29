@@ -1,26 +1,27 @@
-const joi = require('@hapi/joi')
+const handlers = {
+  get: (request, h) => {
+    request.yar.reset()
+    return h.view('home')
+  },
+  post: (request, h) => {
+    const payload = request.payload
+    if (payload.confirmCheckbox) {
+      request.yar.set('confirmCheckbox', payload.confirmCheckbox)
+      return h.redirect('enterWaste')
+    } else {
+      return h.view('home', {
+        errorMessage: 'Please check this box once you have read the information'
+      })
+    }
+  }
+}
 
 module.exports = [{
   method: 'GET',
   path: '/',
-  handler: (request, h) => {
-    request.yar.reset()
-    return h.view('home')
-  }
+  handler: handlers.get
 }, {
   method: 'POST',
   path: '/',
-  handler: (request, h) => {
-    return h.view('home', {
-      title: 'Hello',
-      message: 'World'
-    })
-  },
-  options: {
-    validate: {
-      payload: joi.object().keys({
-        email: joi.string().email().required()
-      })
-    }
-  }
+  handler: handlers.post
 }]

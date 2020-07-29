@@ -3,7 +3,7 @@ const colData = require('../../data/col_data.json')
 // Extract the country data
 const countryDisplayName = []
 // Set the initial text to be displayed in no JavaScript selectlist
-let countryDisplayNameNoJs = [{
+const countryDisplayNameNoJs = [{
   value: 'XXX',
   text: ''
 }]
@@ -41,6 +41,12 @@ const handlers = {
     })
 
     if (countrySearchResults.length === 0) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'country search',
+        action: 'failed',
+        label: payload.selectedCountry
+      })
       return h.view('exportTo', {
         countryDisplayName: countryDisplayName.sort(),
         countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
@@ -49,12 +55,24 @@ const handlers = {
         errorMessage: 'Country not found, please try again.'
       })
     } else if (countrySearchResults.length === 1) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'country search',
+        action: 'single result',
+        label: payload.selectedCountry
+      })
       request.yar.set('countryData', {
         countryName: countrySearchResults[0].value,
         countryDisplayName: countrySearchResults[0].text
       })
       return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'country search',
+        action: 'multiple results',
+        label: payload.selectedCountry
+      })
       request.yar.set('countrySearchResults', countrySearchResults)
       return h.redirect('multiCountryResults')
     }
