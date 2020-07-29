@@ -11,7 +11,7 @@ lab.experiment('Web test', () => {
     server = await createServer()
   })
 
-  lab.test('GET / route works', async () => {
+  /*   lab.test('GET / route works', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -48,7 +48,7 @@ lab.experiment('Web test', () => {
     const response = await server.inject(options)
     Code.expect(response.statusCode).to.equal(400)
   })
-
+ */
   lab.test('GET /about route works', async () => {
     const options = {
       method: 'GET',
