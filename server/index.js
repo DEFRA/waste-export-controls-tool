@@ -22,6 +22,7 @@ async function createServer () {
   await server.register(require('./plugins/logging'))
   await server.register(require('blipp'))
   await server.register(require('./plugins/session'))
+  await server.register(require('./plugins/analytics'))
 
   return server
 }

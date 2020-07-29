@@ -16,7 +16,6 @@ const handlers = {
   }
 }
 
-
 module.exports = [{
   method: 'GET',
   path: '/',

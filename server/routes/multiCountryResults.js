@@ -25,10 +25,22 @@ const handlers = {
           })
         }
       })
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'multicountry search',
+        action: 'single result',
+        label: payload.selectCountryResult
+      })
       return h.redirect('confirm')
     } else {
       const countrySearchResults = request.yar.get('countrySearchResults')
 
+      // Send an event to Google Analytics
+      request.ga.event({
+        category: 'multicountry search',
+        action: 'no country selected',
+        label: payload.selectCountryResult
+      })
       return h.view('multiCountryResults', {
         titleText: 'Select a country',
         hintText: 'Your search matched the following countries. Please choose one or go back to search screen',
