@@ -70,7 +70,16 @@ const handlers = {
     })
   },
   post: (request, h) => {
-    request.yar.reset()
+    // Clear countryData on a new search as it is used by enterWaste POST process to determine if a country needs to be entered
+    // clear rather than reset() keeps the current yar session ID to be used to identify idividual user sessions in analytics
+    request.yar.clear('countryData')
+
+    // Send an event to Google Analytics
+    request.ga.event({
+      category: 'outcome',
+      action: 'new check initiated'
+    })
+
     return h.redirect('enterWaste')
   }
 }

@@ -1,10 +1,18 @@
+// The analytics ID
+let analyticsId = 'UA-173909743-1'
+
+// Set a different analytics ID if in development
+if (process.env.NODE_ENV === 'development') {
+  analyticsId = 'xxx'
+}
+
 module.exports = {
   plugin: require('@defra/hapi-gapi'),
   options: {
     propertySettings: [
       {
-        id: 'UA-173909743-1',
-        hitTypes: ['pageview', 'event', 'ecommerce']
+        id: analyticsId,
+        hitTypes: ['pageview', 'event']
       }
     ],
     sessionIdProducer: async request => {
