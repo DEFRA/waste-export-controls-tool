@@ -56,7 +56,8 @@ const handlers = {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
         itemData: wasteSearchResults,
-        errorMessage: 'Please select a waste type from the list or use the Back link to search again'
+        errorMessage: 'Please select a waste type from the list or use the Back link to search again.<br>' +
+                        'For more information <a href="/wasteNotFound" class="govuk-link">click here</a>'
       })
     }
   }

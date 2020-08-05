@@ -1,7 +1,7 @@
 module.exports = [{
   method: 'GET',
-  path: '/noResults',
+  path: '/wasteNotFound',
   handler: (request, h) => {
-    return h.view('noResults')
+    return h.view('wasteNotFound')
   }
 }]
