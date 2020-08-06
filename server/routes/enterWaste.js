@@ -16,7 +16,7 @@ const handlers = {
       textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.'
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     const payload = request.payload
     const wasteSearchResults = []
     const wasteDetails = []
@@ -39,7 +39,7 @@ const handlers = {
 
     if (wasteSearchResults.length === 0) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'failed',
         label: payload.selectedWasteName
@@ -53,7 +53,7 @@ const handlers = {
       })
     } else if (wasteSearchResults.length === 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'single result',
         label: payload.selectedWasteName
@@ -70,7 +70,7 @@ const handlers = {
       }
     } else if (wasteSearchResults.length > 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'multiple results',
         label: payload.selectedWasteName
