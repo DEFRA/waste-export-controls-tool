@@ -11,7 +11,7 @@ const handlers = {
       itemData: wasteSearchResults
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     const payload = request.payload
     const countryData = request.yar.get('countryData')
 
@@ -35,7 +35,7 @@ const handlers = {
         wasteName: wasteDetails[0].wasteName
       })
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'multiwaste search',
         action: 'single result',
         label: payload.selectWasteResult
@@ -48,7 +48,7 @@ const handlers = {
     } else {
       const wasteSearchResults = request.yar.get('wasteSearchResults')
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'multiwaste search',
         action: 'no waste selected'
       })
@@ -56,7 +56,8 @@ const handlers = {
         titleText: 'Select a Waste Type',
         hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
         itemData: wasteSearchResults,
-        errorMessage: 'Please select a waste type from the list or use the Back link to search again'
+        errorMessage: 'Please select a waste type from the list or use the Back link to search again.<br>' +
+                        'For more information <a href="/wasteNotFound" class="govuk-link">click here</a>'
       })
     }
   }

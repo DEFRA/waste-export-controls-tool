@@ -1,7 +1,7 @@
 // const joi = require('@hapi/joi')
 
 const handlers = {
-  get: (request, h) => {
+  get: async (request, h) => {
     const wasteData = request.yar.get('wasteData')
     const countryData = request.yar.get('countryData')
     const outcomeInt = request.yar.get('outcomeInt')
@@ -33,11 +33,11 @@ const handlers = {
         return {
           panelColor: '#00703c', // Green
           panelTitle: 'Article 18 controls',
-          panelText: 'You can export your waste to the country you selected under Article 18 controls, also known as ’green list’ controls.',
+          panelText: 'You can export your waste to the country you selected under Article 18 controls, also known as "Green List" controls.',
           warningList: '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>You can export your waste to this country but you must comply with the Article 18 (Green List) controls.</td></tr>' +
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>You must complete and sign an Annex VII form and it must travel with the waste at all times.</td></tr>' +
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>You must check with the <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#waste-shipment-controls" class="govuk-link">competent authorities</a> if there are any <strong>local controls</strong> that apply in any country involved in the journey of your waste (called ’transit’ and ’destination’ countries).</td></tr>' +
-                      '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>Check how to ship ‘Green List’ waste under <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#import-or-export-article-18-controls" class="govuk-link">Article 18 controls</a> on the waste import and export webpages.</td></tr>' +
+                      '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>Check how to ship "Green List" waste under <a href="https://www.gov.uk/guidance/importing-and-exporting-waste#import-or-export-article-18-controls" class="govuk-link">Article 18 controls</a> on the waste import and export webpages.</td></tr>' +
                       '<tr><td><span class="govuk-warning-text__icon" aria-hidden="true">!</span></td><td>If you do not comply with all the Article 18 control requirements you will be breaking the law.</td></tr>'
         }
       } else if (outcomeInt === 4) {
@@ -55,7 +55,7 @@ const handlers = {
     const { panelColor, panelTitle, panelText, warningList } = generateOutcomeData()
 
     // Send an event to Google Analytics
-    request.ga.event({
+    await request.ga.event({
       category: 'outcome',
       action: panelTitle
     })
@@ -69,13 +69,13 @@ const handlers = {
       warningList: warningList
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     // Clear countryData on a new search as it is used by enterWaste POST process to determine if a country needs to be entered
     // clear rather than reset() keeps the current yar session ID to be used to identify idividual user sessions in analytics
     request.yar.clear('countryData')
 
     // Send an event to Google Analytics
-    request.ga.event({
+    await request.ga.event({
       category: 'outcome',
       action: 'new check initiated'
     })

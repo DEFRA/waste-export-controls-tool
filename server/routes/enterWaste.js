@@ -16,7 +16,7 @@ const handlers = {
       textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.'
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     const payload = request.payload
     const wasteSearchResults = []
     const wasteDetails = []
@@ -39,7 +39,7 @@ const handlers = {
 
     if (wasteSearchResults.length === 0) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'failed',
         label: payload.selectedWasteName
@@ -49,11 +49,11 @@ const handlers = {
         textLine1: 'Search for your waste by the waste code or a key word',
         textLine2: 'For example, A1010 or plastic',
         textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.',
-        errorMessage: 'Waste not found, please try again.'
+        errorMessage: 'Waste not found! Please try again or <a href="/wasteNotFound" class="govuk-link">click here</a> for further information.'
       })
     } else if (wasteSearchResults.length === 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'single result',
         label: payload.selectedWasteName
@@ -70,7 +70,7 @@ const handlers = {
       }
     } else if (wasteSearchResults.length > 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'waste search',
         action: 'multiple results',
         label: payload.selectedWasteName

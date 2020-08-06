@@ -11,7 +11,7 @@ const handlers = {
       itemData: countrySearchResults
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     const payload = request.payload
 
     if (payload.selectCountryResult) {
@@ -26,7 +26,7 @@ const handlers = {
         }
       })
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'multicountry search',
         action: 'single result',
         label: payload.selectCountryResult
@@ -36,7 +36,7 @@ const handlers = {
       const countrySearchResults = request.yar.get('countrySearchResults')
 
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'multicountry search',
         action: 'no country selected',
         label: payload.selectCountryResult

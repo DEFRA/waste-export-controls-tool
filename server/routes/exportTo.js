@@ -25,7 +25,7 @@ const handlers = {
       hintText: 'For example, Belguim'
     })
   },
-  post: (request, h) => {
+  post: async (request, h) => {
     const payload = request.payload
     const countrySearchResults = []
 
@@ -42,7 +42,7 @@ const handlers = {
 
     if (countrySearchResults.length === 0) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'country search',
         action: 'failed',
         label: payload.selectedCountry
@@ -56,7 +56,7 @@ const handlers = {
       })
     } else if (countrySearchResults.length === 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'country search',
         action: 'single result',
         label: payload.selectedCountry
@@ -68,7 +68,7 @@ const handlers = {
       return h.redirect('confirm')
     } else if (countrySearchResults.length > 1) {
       // Send an event to Google Analytics
-      request.ga.event({
+      await request.ga.event({
         category: 'country search',
         action: 'multiple results',
         label: payload.selectedCountry

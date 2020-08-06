@@ -20,7 +20,7 @@
 
     {% if errorMessage %}
       <span id="error-message" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+        <span class="govuk-visually-hidden">Error:</span> {{ errorMessage | safe }}
       </span>
     {% endif %}
 
@@ -37,7 +37,7 @@
             text: textLine3 | safe
           },
           errorMessage: {
-            text: errorMessage
+            text: errorMessage | safe
           },
           id: "selectedWasteName",
           name: "selectedWasteName"
