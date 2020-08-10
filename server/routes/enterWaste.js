@@ -10,7 +10,7 @@ const handlers = {
   get: (request, h) => {
     // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
     const confirmCheckbox = request.yar.get('confirmCheckbox')
-    if(!confirmCheckbox) {
+    if (!confirmCheckbox) {
       return h.redirect('/')
     } else {
       // Respond with the view

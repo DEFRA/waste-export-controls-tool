@@ -5,17 +5,17 @@ const handlers = {
   get: (request, h) => {
     // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
     const confirmCheckbox = request.yar.get('confirmCheckbox')
-    if(!confirmCheckbox) {
+    if (!confirmCheckbox) {
       return h.redirect('/')
     } else {
-    const countrySearchResults = request.yar.get('countrySearchResults')
+      const countrySearchResults = request.yar.get('countrySearchResults')
 
-    return h.view('multiCountryResults', {
-      titleText: 'Select a country',
-      hintText: 'Your search matched the following countries. Please choose one or go back to search screen',
-      itemData: countrySearchResults
-    })
-  }
+      return h.view('multiCountryResults', {
+        titleText: 'Select a country',
+        hintText: 'Your search matched the following countries. Please choose one or go back to search screen',
+        itemData: countrySearchResults
+      })
+    }
   },
   post: async (request, h) => {
     const payload = request.payload
