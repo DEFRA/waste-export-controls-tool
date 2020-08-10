@@ -2,6 +2,11 @@
 
 const handlers = {
   get: async (request, h) => {
+    // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
+    const confirmCheckbox = request.yar.get('confirmCheckbox')
+    if(!confirmCheckbox) {
+      return h.redirect('/')
+    } else {
     const wasteData = request.yar.get('wasteData')
     const countryData = request.yar.get('countryData')
     const outcomeInt = request.yar.get('outcomeInt')
@@ -68,6 +73,7 @@ const handlers = {
       countryName: countryData.countryDisplayName,
       warningList: warningList
     })
+  }
   },
   post: async (request, h) => {
     // Clear countryData on a new search as it is used by enterWaste POST process to determine if a country needs to be entered
