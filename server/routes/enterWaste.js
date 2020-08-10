@@ -8,13 +8,19 @@ data.forEach(element => {
 
 const handlers = {
   get: (request, h) => {
-    // Respond with the view
-    return h.view('enterWaste', {
-      wasteCodeNameSuffix: wasteCodeNameSuffix,
-      textLine1: 'Search for your waste by the waste code or a key word',
-      textLine2: 'For example, A1010 or plastic',
-      textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.'
-    })
+    // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
+    const confirmCheckbox = request.yar.get('confirmCheckbox')
+    if(!confirmCheckbox) {
+      return h.redirect('/')
+    } else {
+      // Respond with the view
+      return h.view('enterWaste', {
+        wasteCodeNameSuffix: wasteCodeNameSuffix,
+        textLine1: 'Search for your waste by the waste code or a key word',
+        textLine2: 'For example, A1010 or plastic',
+        textLine3: 'Select your waste from the drop down list, or click <strong>Continue</strong> to see a full list of matches.'
+      })
+    }
   },
   post: async (request, h) => {
     const payload = request.payload

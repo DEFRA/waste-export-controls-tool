@@ -3,13 +3,19 @@ const data = require('../../data/data.json')
 
 const handlers = {
   get: (request, h) => {
-    const wasteSearchResults = request.yar.get('wasteSearchResults')
+    // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
+    const confirmCheckbox = request.yar.get('confirmCheckbox')
+    if(!confirmCheckbox) {
+      return h.redirect('/')
+    } else {
+      const wasteSearchResults = request.yar.get('wasteSearchResults')
 
-    return h.view('multiWasteResults', {
-      titleText: 'Select a Waste Type',
-      hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
-      itemData: wasteSearchResults
-    })
+      return h.view('multiWasteResults', {
+        titleText: 'Select a Waste Type',
+        hintText: 'Your search matched the following Waste Types. Please choose one or go back to search screen',
+        itemData: wasteSearchResults
+      })
+    }
   },
   post: async (request, h) => {
     const payload = request.payload
