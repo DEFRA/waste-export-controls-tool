@@ -3,14 +3,20 @@ const data = require('../../data/data.json')
 
 const handlers = {
   get: (request, h) => {
-    const wasteData = request.yar.get('wasteData')
-    const countryData = request.yar.get('countryData')
+    // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
+    const confirmCheckbox = request.yar.get('confirmCheckbox')
+    if (!confirmCheckbox) {
+      return h.redirect('/')
+    } else {
+      const wasteData = request.yar.get('wasteData')
+      const countryData = request.yar.get('countryData')
 
-    return h.view('confirm', {
-      wasteCode: wasteData.wasteCode,
-      wasteName: wasteData.wasteName,
-      countryDisplayName: countryData.countryDisplayName
-    })
+      return h.view('confirm', {
+        wasteCode: wasteData.wasteCode,
+        wasteName: wasteData.wasteName,
+        countryDisplayName: countryData.countryDisplayName
+      })
+    }
   },
   post: (request, h) => {
     const wasteData = request.yar.get('wasteData')

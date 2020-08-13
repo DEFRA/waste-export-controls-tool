@@ -17,13 +17,19 @@ colData.forEach(element => {
 
 const handlers = {
   get: (request, h) => {
-    // Respond with the view
-    return h.view('exportTo', {
-      countryDisplayName: countryDisplayName.sort(),
-      countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
-      labelText: 'Search for the country you intend to export your waste to',
-      hintText: 'For example, Belguim'
-    })
+    // Check to see if the confirmation box on the home page has been checked. If not redirect to '/'
+    const confirmCheckbox = request.yar.get('confirmCheckbox')
+    if (!confirmCheckbox) {
+      return h.redirect('/')
+    } else {
+      // Respond with the view
+      return h.view('exportTo', {
+        countryDisplayName: countryDisplayName.sort(),
+        countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
+        labelText: 'Search for the country you intend to export your waste to',
+        hintText: 'For example, Belguim'
+      })
+    }
   },
   post: async (request, h) => {
     const payload = request.payload
