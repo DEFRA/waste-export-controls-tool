@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="assets/accessible-autocomplete.min.css">
 
-    <form method="post" autocomplete="off">
+    <form method="post" autocomplete="off" id="wasteForm">
 
     {# JavaScript version of textbox with autocomplete #}
     <div id="hideThisFromNonJs" style="display:none">
@@ -79,7 +79,9 @@
       element: document.querySelector('#selectedWasteName'),
       id: 'wasteCodeNameSuffix',
       source: {{ wasteCodeNameSuffix | dump | safe }},
-      name: 'selectedWasteName'
+      name: 'selectedWasteName',
+      defaultValue: {{ defaultValue | dump | safe }},
+      tNoResults: () => document.getElementById("wasteForm").submit() // submit the form if no results are found instead of displaying the message
     })
   </script>
 {% endblock %}
