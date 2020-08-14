@@ -79,7 +79,8 @@
       element: document.querySelector('#selectedWasteName'),
       id: 'wasteCodeNameSuffix',
       source: {{ wasteCodeNameSuffix | dump | safe }},
-      name: 'selectedWasteName'
+      name: 'selectedWasteName',
+      tNoResults: () => 'waste not found' // text to be displayed when no results found
     })
   </script>
 {% endblock %}
