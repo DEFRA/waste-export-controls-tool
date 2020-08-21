@@ -81,7 +81,19 @@
       source: {{ wasteCodeNameSuffix | dump | safe }},
       name: 'selectedWasteName',
       defaultValue: {{ defaultValue | dump | safe }},
-      tNoResults: () => document.getElementById("wasteForm").submit() // submit the form if no results are found instead of displaying the message
+      tNoResults: () => window.addEventListener('keyup', debounce( () => {
+                          document.getElementById("wasteForm").submit()
+      }, 2000))
     })
+  </script>
+
+  <script type="text/javascript">
+    function debounce(callback, wait) {
+      let timeout;
+      return (...args) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+      };
+    }
   </script>
 {% endblock %}

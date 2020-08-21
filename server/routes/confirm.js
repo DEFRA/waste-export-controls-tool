@@ -1,4 +1,3 @@
-// const joi = require('@hapi/joi')
 const data = require('../../data/data.json')
 
 const handlers = {
