@@ -60,7 +60,7 @@ A table of environment variables should be maintained in this README.
 
 ## Plugins
 
-hapi has a powerful plugin system and all server code should be loaded in a plugin.
+Hapi has a powerful plugin system and all server code should be loaded in a plugin.
 
 Plugins live in the `server/plugins` directory.
 
@@ -110,21 +110,6 @@ A single route looks like this:
 ```
 
 There are lots of [route options](http://hapijs.com/api#route-options), here's the documentation on [hapi routes](http://hapijs.com/tutorials/routing)
-
-## Tasks
-
-Build tasks are created using simple shell scripts or node.js programs.
-The default ones are found in the `bin` directory.
-
-The task runner is simply `npm` using `npm-scripts`.
-
-The predefined tasks are:
-
-- `npm run build` (Runs all build sub-tasks)
-- `npm run build:css` (Builds the client-side sass)
-- `npm run lint` (Runs the lint task using standard.js)
-- `npm run unit-test` (Runs the `lab` tests in the `/test` folder)
-- `npm test` (Runs the `lint` task then the `unit-tests`)
 
 ## Testing
 
