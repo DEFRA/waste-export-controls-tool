@@ -13,46 +13,17 @@ This tool helps you to identify the appropriate classification for waste which i
 
 Node v8+
 
-
-# (Checklist)
-Once you clone this repository you'll need to make a few changes before you're ready to start:
-
-- [ ] Add service name and description to the README above
-- [ ] Check over the content of the 404 and 500 error pages and tailor to suit
-- [ ] Update the `package.json` with the name, description and any git urls and authors etc.  
-- [ ] Update the [views context data](/server/plugins/views.js#L39) to include the correct service and default page title
-- [ ] Remove the .git folder in the root directory. This will cut the cord to this boilerplate repo.
-- [ ] Update the build status badges to your new project
-
 # Running the application
 
 First build the application using:
 
-`$ npm run build`
+`$ npm install`
 
-Currently this will just build the `govuk-frontend` sass but may be extended to include other build tasks as needed (e.g. client-side js using browserify or webpack etc.)
+Currently this will install the required packages and build the `govuk-frontend` sass.
 
 Now the application is ready to run:
 
-`$ node index.js`
-
-
-(You can delete the remainder of this readme once you're up and running)
-
-## What is this?
-
-A simple hapi-based enterprise ready govuk web application boilerplate.
-Click here for a similar [api boilerplate hapi project](https://github.com/DEFRA/hapi-api-boilerplate).
-
-Based on:
-
-- [hapijs](https://github.com/hapijs/hapi) - The framework & core plugins like `joi`, `vision` etc.
-- [standardjs](http://standardjs.com/) - Linting
-- [govuk-frontend](https://github.com/alphagov/govuk-frontend) - Styles & macros
-- [nunjucks](http://mozilla.github.io/nunjucks/) - Default template engine
-- [npm-scripts](https://docs.npmjs.com/misc/scripts) - Build tool
-- [pm2](https://github.com/Unitech/pm2) - Process manager
-
+`$ npm start` or `$ node index.js`
 
 ## Getting started
 
@@ -62,7 +33,7 @@ Check the server is running by pointing your browser to `http://localhost:3000`
 
 ## Project structure
 
-Here's the default structure for your project files.
+Here's the default structure of the project files.
 
 * **bin** (build tasks)
 * **client** (client js/sass code)
@@ -147,8 +118,6 @@ The default ones are found in the `bin` directory.
 
 The task runner is simply `npm` using `npm-scripts`.
 
-We chose to use this for simplicity but there's nothing to stop you adding `gulp`, `grunt` or another task runner if you prefer. 
-
 The predefined tasks are:
 
 - `npm run build` (Runs all build sub-tasks)
@@ -156,15 +125,6 @@ The predefined tasks are:
 - `npm run lint` (Runs the lint task using standard.js)
 - `npm run unit-test` (Runs the `lab` tests in the `/test` folder)
 - `npm test` (Runs the `lint` task then the `unit-tests`)
-
-### Resources
-
-For more information around using `npm-scripts` as a build tool:
-
-- http://substack.net/task_automation_with_npm_run
-- http://ponyfoo.com/articles/choose-grunt-gulp-or-npm
-- http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
-- http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/
 
 ## Testing
 
