@@ -1,5 +1,5 @@
 # Waste Export Controls Tool
-This tool helps you to identify the appropriate classification for waste which is intended for export and the regulatory controls which apply to exports of those wastes to certain countries.
+You can use this service to find out what controls apply to exporting your waste from England, Wales, Scotland, or Northern Ireland to the country it’s destined for.
 
 # Environment variables
 (Be sure to describe any environment variables here by maintaining a list like this)
