@@ -4,14 +4,14 @@
 {% from "back-link/macro.njk" import govukBackLink %}
 
 {% block content %}
-  <div class="govuk-body">
+  <div class="govuk-body" id="main-content">
     
      <style>
       .govuk-panel--confirmation {
         background:	#808080}
     </style>
 
-     {{ govukPanel({
+    {{ govukPanel({
       titleText: "Waste not found",
       html: ""
     }) }}

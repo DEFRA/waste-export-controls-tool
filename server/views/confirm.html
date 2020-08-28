@@ -5,7 +5,7 @@
 {% from "back-link/macro.njk" import govukBackLink %}
 
 {% block content %}
-  <div class="govuk-body">
+  <div class="govuk-body" id="main-content">
     <h1 class="govuk-heading-xl">Confim waste and county details</h1>
 
     {{ govukSummaryList({
@@ -18,13 +18,7 @@
             text: wasteCode
           },
           actions: {
-            items: [
-              {
-                href: "",
-                text: "",
-                visuallyHiddenText: ""
-              }
-            ]
+            items: []
           }
         },
         {
