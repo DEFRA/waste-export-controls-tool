@@ -49,17 +49,11 @@
       ]
     }) }}
 
-    {# Overridden the position as the default was pushing it to the edge of the screen #}
-    <style>
-    .govuk-warning-text__icon {
-      position: relative;
-    </style>
 
     {# Table that displays the warnings #}
-    <table cellpadding="10">
+    <p  class="govuk-warning-text">
       {{ warningList | safe }}
-    </table>
-    <br>
+    </p>
 
     <h2 class="govuk-heading-m">Need further guidance?</h2>
 
