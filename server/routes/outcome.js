@@ -3,7 +3,7 @@ function generateWarning (warningText) {
   return `<span class="govuk-warning-text__icon" aria-hidden="true">!</span><span class="govuk-warning-text__text"><span class="govuk-warning-text__assistive">Warning</span>${ warningText }</span><br>`
 }
 
-//Calculate if the watse can be exported
+// Determine the waste export outcome and generate page data
 function generateOutcomeData (outcomeInt) {
   if (outcomeInt === 1) {
     return {
