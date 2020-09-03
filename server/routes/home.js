@@ -1,7 +1,14 @@
 const handlers = {
   get: (request, h) => {
-    request.yar.reset()
-    return h.view('home')
+    // Check the checkbox if it has been set previously
+    let checkboxChecked = false
+    if (request.yar.get('confirmCheckbox')) {
+      checkboxChecked = true
+    }
+
+    return h.view('home', {
+      checkboxChecked: checkboxChecked
+    })
   },
   post: (request, h) => {
     const payload = request.payload

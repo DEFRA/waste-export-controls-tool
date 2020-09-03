@@ -1,6 +1,6 @@
 // Generate the warning messages
 function generateWarning (warningText) {
-  return `<span class="govuk-warning-text__icon" aria-hidden="true">!</span><span class="govuk-warning-text__text"><span class="govuk-warning-text__assistive">Warning</span>${ warningText }</span><br>`
+  return `<span class="govuk-warning-text__icon" aria-hidden="true">!</span><span class="govuk-warning-text__text"><span class="govuk-warning-text__assistive">Warning</span>${warningText}</span><br>`
 }
 
 // Determine the waste export outcome and generate page data
