@@ -1,7 +1,7 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const createServer = require('../server')
+const createServer = require('../../server')
 
 lab.experiment('Web test', () => {
   let server
@@ -22,31 +22,14 @@ lab.experiment('Web test', () => {
     Code.expect(response.headers['content-type']).to.include('text/html')
   })
 
-/*   lab.test('POST / route works', async () => {
+  lab.test('unknown url returns 404', async () => {
     const options = {
-      method: 'POST',
-      url: '/',
-      payload: {
-        email: 'a@b.com'
-      }
+      method: 'GET',
+      url: '/aDodgyUrl'
     }
 
     const response = await server.inject(options)
-    Code.expect(response.statusCode).to.equal(200)
-    Code.expect(response.headers['content-type']).to.include('text/html')
+    Code.expect(response.statusCode).to.equal(404)
   })
 
-  lab.test('POST / route fails with invalid payload', async () => {
-    const options = {
-      method: 'POST',
-      url: '/',
-      payload: {
-        email: 'a@b'
-      }
-    }
-
-    const response = await server.inject(options)
-    Code.expect(response.statusCode).to.equal(400)
-  })
- */
 })
