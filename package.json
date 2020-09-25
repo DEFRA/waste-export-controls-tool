@@ -1,7 +1,7 @@
 {
   "name": "waste-export-controls-tool",
   "version": "0.0.1",
-  "description": "This tool helps you to identify the appropriate classification for waste which is intended for export and the regulatory controls which apply to exports of those wastes to certain countries.",
+  "description": "You can use this service to find out what controls apply to exporting your waste from the UK to the country it’s destined for.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -21,21 +21,22 @@
     "@hapi/good-console": "^9.0.0",
     "@hapi/good-squeeze": "^6.0.0",
     "@hapi/hapi": "^19.2.0",
-    "@hapi/inert": "^6.0.1",
+    "@hapi/inert": "^6.0.2",
     "@hapi/joi": "^17.1.1",
-    "@hapi/vision": "^6.0.0",
-    "@hapi/yar": "^10.1.0",
+    "@hapi/vision": "^6.0.1",
+    "@hapi/yar": "^10.1.1",
     "accessible-autocomplete": "^2.0.3",
     "blipp": "^4.0.1",
     "generate-password": "^1.5.1",
-    "govuk-frontend": "^3.7.0",
+    "govuk-frontend": "^3.9.0",
     "nunjucks": "^3.2.2"
   },
   "devDependencies": {
-    "@hapi/code": "^8.0.1",
-    "@hapi/lab": "^22.0.4",
+    "@hapi/code": "^8.0.2",
+    "@hapi/lab": "^22.0.5",
     "codeclimate-test-reporter": "^0.5.1",
     "node-sass": "^4.14.1",
+    "sinon": "^9.0.3",
     "standard": "^14.3.4"
   }
 }
