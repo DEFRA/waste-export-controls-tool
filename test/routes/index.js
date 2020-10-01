@@ -31,5 +31,4 @@ lab.experiment('Web test', () => {
     const response = await server.inject(options)
     Code.expect(response.statusCode).to.equal(404)
   })
-
 })
