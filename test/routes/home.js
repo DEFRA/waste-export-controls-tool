@@ -40,5 +40,4 @@ lab.experiment('Web test', () => {
     Code.expect(response.headers['content-type']).to.include('text/html')
     Code.expect(response.payload).to.include('Please check this box once you have read the information')
   })
-
 })
