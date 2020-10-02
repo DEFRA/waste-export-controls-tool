@@ -25,11 +25,11 @@ const handlers = {
 
       data.forEach(element => {
         // Perform a search to see if the selectedWasteName exists within the wasteName string
-        if (element.wasteCodeNameSuffix.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
+        if (`${element.Title} ${element.wasteName} ${element.wasteSuffix}`.toUpperCase().includes(payload.selectWasteResult.toUpperCase())) {
           // For every positive result add it to the wasteSearchResults
           wasteDetails.push({
             wasteCode: element.Title,
-            wasteName: element.wasteName
+            wasteName: `${element.wasteName} ${element.wasteSuffix}`
           })
         }
       })
