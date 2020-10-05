@@ -3,7 +3,7 @@ const data = require('../../data/data.json')
 // Extract just the wasteName from the main data file
 const wasteCodeNameSuffix = []
 data.forEach(element => {
-  wasteCodeNameSuffix.push(element.wasteCodeNameSuffix)
+  wasteCodeNameSuffix.push(`${element.Title} ${element.wasteName} ${element.wasteSuffix}`)
 })
 
 const handlers = {
@@ -31,15 +31,15 @@ const handlers = {
 
     data.forEach(element => {
       // Perform a search to see if the selectedWasteName exists within the wasteName string
-      if (element.wasteCodeNameSuffix.toUpperCase().includes(payload.selectedWasteName.toUpperCase())) {
+      if (`${element.Title} ${element.wasteName} ${element.wasteSuffix}`.toUpperCase().includes(payload.selectedWasteName.toUpperCase())) {
         // For every positive result add it to the arrays
         wasteSearchResults.push({
-          value: element.wasteCodeNameSuffix,
-          text: element.wasteCodeNameSuffix
+          value: `${element.Title} ${element.wasteName} ${element.wasteSuffix}`,
+          text: `${element.Title} ${element.wasteName} ${element.wasteSuffix}`
         })
         wasteDetails.push({
           wasteCode: element.Title,
-          wasteName: element.wasteName
+          wasteName: `${element.wasteName} ${element.wasteSuffix}`
         })
       }
     })
