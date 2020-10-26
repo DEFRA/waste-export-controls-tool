@@ -81,7 +81,7 @@
       name: 'selectedWasteName',
       defaultValue: {{ defaultValue | dump | safe }},
       tNoResults: function () {
-        window.addEventListener('keyup', debounce( () => {
+        window.addEventListener('keyup', debounce( function () {
           document.getElementById("wasteForm").submit()
           }, 2000))
       }
@@ -90,14 +90,14 @@
     // Adds a delay to the auto submission of the form in tNoResults
     function debounce(callback, wait) {
       let timeout;
-      return (...args) => {
+      return function (...args) {
           clearTimeout(timeout);
           timeout = setTimeout(function () { callback.apply(this, args) }, wait);
       };
     };
 
     // Submit form when 'Enter' key is pressed while in selectedWasteName
-    document.getElementById("selectedWasteName").addEventListener("keyup", function(event) {
+    document.getElementById("selectedWasteName").addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
           document.getElementById("wasteForm").submit();
         return false;
