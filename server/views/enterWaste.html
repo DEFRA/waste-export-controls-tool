@@ -80,9 +80,11 @@
       source: {{ wasteCodeNameSuffix | dump | safe }},
       name: 'selectedWasteName',
       defaultValue: {{ defaultValue | dump | safe }},
-      tNoResults: () => window.addEventListener('keyup', debounce( () => {
-                          document.getElementById("wasteForm").submit()
-      }, 2000))
+      tNoResults: function () {
+        window.addEventListener('keyup', debounce( () => {
+          document.getElementById("wasteForm").submit()
+          }, 2000))
+      }
     });
 
     // Adds a delay to the auto submission of the form in tNoResults
