@@ -90,9 +90,9 @@
     // Adds a delay to the auto submission of the form in tNoResults
     function debounce(callback, wait) {
       let timeout;
-      return function (...args) {
+      return function (arguments) {
           clearTimeout(timeout);
-          timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+          timeout = setTimeout(function () { callback.apply(this, arguments) }, wait);
       };
     };
 
