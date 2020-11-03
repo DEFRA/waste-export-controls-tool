@@ -27,7 +27,7 @@ const handlers = {
         countryDisplayName: countryDisplayName.sort(),
         countryDisplayNameNoJs: countryDisplayNameNoJs.sort(),
         labelText: 'Search for the country you intend to export your waste to',
-        hintText: 'For example, Belguim'
+        hintText: 'For example, Belgium'
       })
     }
   },
