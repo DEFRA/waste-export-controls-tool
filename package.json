@@ -29,7 +29,7 @@
     "blipp": "^4.0.1",
     "generate-password": "^1.5.1",
     "govuk-frontend": "^3.9.0",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.4"
   },
   "devDependencies": {
     "@hapi/code": "^8.0.2",
